@@ -1,0 +1,30 @@
+{
+  "name": "pw",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon node server.js",
+    "start": "node server.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.10.0",
+    "@prisma/client": "4.2.0",
+    "console-log-colors": "^0.2.3",
+    "express": "^4.18.1",
+    "jest-express": "^1.12.0",
+    "next": "12.2.4",
+    "nodemon": "^2.0.19",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.54.3",
+    "swagger-ui-express": "^4.5.0"
+  },
+  "devDependencies": {
+    "eslint": "8.21.0",
+    "eslint-config-next": "12.2.4",
+    "prisma": "^4.2.0"
+  }
+}
