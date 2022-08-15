@@ -23,6 +23,8 @@ model User {
     @@map("Users")
 }
 
+
+
 model Book {
     id     String  @id @default(uuid())
     ISBN   String  @unique
