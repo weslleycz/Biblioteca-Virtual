@@ -5,13 +5,13 @@ import { ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
-import useMedia from "use-media";
 import heroImg from "../../assets/heroImg.svg";
+import { useMedia } from "../../hooks/useMedia";
 import { theme } from "../../styles/theme/materialUi";
 import Styles from "./styles.module.scss";
 
 export const Hero = () => {
-    const isWide = useMedia({ minWidth: 720 });
+    const isWide = useMedia("(min-width: 480px)");
     return (
         <>
             <Container maxWidth="lg" sx={{ marginTop: 2 }}>
@@ -53,9 +53,9 @@ export const Hero = () => {
                                     }}
                                     gutterBottom
                                 >
-                                    body1. Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit. Quos
-                                    blanditiis tenetur unde.
+                                    Biblioteca Virtual Universitária.
+                                    Disponibiliza a comunidade acadêmica 
+                                    um rico acervo de obras.
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                     <Button
@@ -71,7 +71,13 @@ export const Hero = () => {
                             </Container>
                         </Grid>
                         <Grid sx={{ justifyContent: "center" }} xs={8}>
-                            <Image src={heroImg} alt="Logo" />
+                            <Image
+                                className="animate__animated animate__shakeY animate__infinite 
+                                animate__slower
+                                animate__delay-1s"
+                                src={heroImg}
+                                alt="Logo"
+                            />
                         </Grid>
                     </Grid>
                 </Box>
