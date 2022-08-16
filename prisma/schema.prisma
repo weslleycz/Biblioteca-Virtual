@@ -53,7 +53,7 @@ model Loan {
 
 model ADM {
     id       String @id @default(uuid())
-    email    String @unique
+    username String @unique
     password String
     books    Book[]
 }

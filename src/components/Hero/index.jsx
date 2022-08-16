@@ -60,7 +60,7 @@ export const Hero = () => {
                                 <ThemeProvider theme={theme}>
                                     <Button
                                         variant="contained"
-                                        sx={{ marginTop: 3, width: "50%" }}
+                                        sx={{ marginTop: 3, width: "55%" }}
                                         fullWidth={true}
                                         size="medium"
                                         disableElevation

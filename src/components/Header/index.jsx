@@ -6,12 +6,15 @@ import React from "react";
 import Logo from "../../assets/logo.svg";
 import { theme } from "../../styles/theme/materialUi";
 import Styles from "./styles.module.scss";
+import Link from "next/link";
 
 export const Header = () => {
     return (
         <header className={Styles.headerContainer}>
             <div className={Styles.headerContent}>
+                <Link href="/" >
                 <Image height="60%" src={Logo} alt="Logo" />
+                </Link>
                 <nav>
                     <a href="#" className={Styles.active}>
                         Home
