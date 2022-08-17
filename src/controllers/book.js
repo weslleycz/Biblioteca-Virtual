@@ -37,17 +37,14 @@ const updateBook = async (req, res) => {
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
         const token = verify(req.headers.authorization, secret);
-        const { id, ISBN, title, author, year } = req.body;
+        const id = req.params.id;
+        const data = req.body;
         const book = await prismaClient.book.update({
             where: {
                 id: id,
             },
             data: {
-                ISBN: ISBN,
-                title: title,
-                author: author,
-                year: year,
-                aDMId: token.data,
+                ...data,
             },
         });
         return res.status(200).json({ status: "update", has_error: false });
@@ -69,7 +66,7 @@ const deleteBook = async (req, res) => {
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
         const token = verify(req.headers.authorization, secret);
-        const { id } = req.body;
+        const id = req.params.id;
         const book = await prismaClient.book.delete({
             where: {
                 id: id,
@@ -92,11 +89,28 @@ const deleteBook = async (req, res) => {
 const getBook = async (req, res) => {
     console.log(bgRed(req.bgMagenta));
     try {
-        const data = await prismaClient.book.findMany()
+        const data = await prismaClient.book.findMany();
         return res.status(200).json({ data: data, has_error: false });
     } catch (error) {
         return res.status(500).json({ status: "error", has_error: true });
     }
-}
+};
 
-module.exports = { createBook, updateBook ,deleteBook,getBook};
+const searchBook = async (req, res) => {
+    console.log(bgRed(req.bgMagenta));
+    try {
+        const title = req.params.title;
+        const data = await prismaClient.book.findMany({
+            where: {
+                title: {
+                    contains: title.toString(),
+                },
+            },
+        });
+        return res.status(200).json({ data: data, has_error: false });
+    } catch (error) {
+        return res.status(500).json({ status: "error", has_error: true });
+    }
+};
+
+module.exports = { createBook, updateBook, deleteBook, getBook, searchBook };

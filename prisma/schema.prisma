@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -25,15 +26,16 @@ model User {
 }
 
 model Book {
-    id     String  @id @default(uuid())
-    ISBN   String  @unique
+    id     String   @id @default(uuid())
+    ISBN   String   @unique
     title  String
     author String
     year   String
+    rating Float @default(0)
     cover  String?
-    Loan   Loan?   @relation(fields: [loanId], references: [id])
+    Loan   Loan?    @relation(fields: [loanId], references: [id])
     loanId String?
-    ADM    ADM?    @relation(fields: [aDMId], references: [id])
+    ADM    ADM?     @relation(fields: [aDMId], references: [id])
     aDMId  String?
 
     @@map("Books")
