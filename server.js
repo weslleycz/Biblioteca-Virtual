@@ -3,7 +3,7 @@ const next = require("next");
 const { color } = require("console-log-colors");
 const options = require("./src/swagger/config");
 const swaggerUi = require("swagger-ui-express");
-
+require('dotenv').config()
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dir: ".", dev });
