@@ -13,11 +13,11 @@
 
 html, body {
   ::-webkit-scrollbar-track {
-    background-color: $dark-500; 
+    background-color: rgb(226, 253, 201); 
   }
   ::-webkit-scrollbar {
     width: 6px;
-    background: $dark-500; 
+    background-color: rgb(226, 253, 201); 
   }
   ::-webkit-scrollbar-thumb {
     background: $primary-250; 
