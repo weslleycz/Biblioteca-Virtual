@@ -5,7 +5,10 @@ const nextConfig = {
   useFileSystemPublicRoutes: false,
   env:{
     secret:"GN8Mrz7EJC%3",
-  }
+  },
+  images: {
+    domains: ['https://firebasestorage.googleapis.com/v0/b/me-leva-next.appspot.com/'],
+  },
 }
 
 module.exports = nextConfig

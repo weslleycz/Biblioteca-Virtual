@@ -13,6 +13,8 @@ import StarIcon from "@mui/icons-material/Star";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../styles/theme/materialUi";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const responsive = {
     superLargeDesktop: {
@@ -35,6 +37,84 @@ const responsive = {
 
 export const News = () => {
     const isWide = useMedia("(min-width: 480px)");
+
+    const [news, setNews] = useState(<div></div>);
+
+    const getNews = async () => {
+        const data = await axios.get("/getBook");
+        const books = data.data.data.map((item) => {
+            return (
+                <>
+                    <Box
+                    kay={item.id}
+                        sx={{
+                            marginRight: 4,
+                            backgroundImage:
+                                "linear-gradient(to bottom, #f9fff5 50%, #ffffff)",
+                            marginTop: "auto",
+                            textAlign: "center",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            margin: "0 auto",
+                            marginBottom: 3,
+                            boxShadow: "1px 4px 9px rgba(0, 0, 0, 0.25)",
+                            border: "1px solid #eee2e2;",
+                        }}
+                    >
+                        <Box sx={{ paddingTop: "8.5%" }}>
+                            <img
+                                height={400}
+                                width={300}
+                                className={Styles.item}
+                                src={`${item.cover}`}
+                                alt=""
+                            ></img>
+                        </Box>
+                        <Box>
+                            <Typography
+                                variant="h6"
+                                gutterBottom
+                                component="div"
+                            >
+                                <strong>{item.title}</strong>
+                            </Typography>
+                        </Box>
+                        <Rating
+                            name="text-feedback"
+                            readOnly
+                            precision={0.5}
+                            value={item.rating}
+                            emptyIcon={
+                                <StarIcon
+                                    style={{ opacity: 0.55 }}
+                                    fontSize="inherit"
+                                />
+                            }
+                        />
+                        <Box>
+                            <ThemeProvider theme={theme}>
+                                <Button
+                                    sx={{
+                                        marginBlockEnd: "8.5%",
+                                        marginTop: "10px",
+                                    }}
+                                    size="medium"
+                                    disableElevation
+                                    variant="contained"
+                                >
+                                    Adicionar ao carrinho
+                                </Button>
+                            </ThemeProvider>
+                        </Box>
+                    </Box>
+                </>
+            );
+        });
+        setNews(books)
+    };
+
+    getNews();
+
     return (
         <>
             <div className="carosel-conteiner">
@@ -48,67 +128,7 @@ export const News = () => {
                     </Typography>
                     <Image src={Line} alt=""></Image>
                     <Carousel ssr={true} responsive={responsive}>
-                        <Box
-                            sx={{
-                                marginRight: 2,
-                                backgroundImage:
-                                    "linear-gradient(to bottom, #f9fff5 50%, #ffffff)",
-                                marginTop: "auto",
-                                textAlign: "center",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                margin: "0 auto",
-                                marginBottom: 3,
-                                boxShadow: "1px 4px 9px rgba(0, 0, 0, 0.25)",
-                                border: "1px solid #eee2e2;",
-                            }}
-                        >
-                            <Box sx={{ paddingTop: "8.5%" }}>
-                                <Image
-                                    height={400}
-                                    width={300}
-                                    className={Styles.item}
-                                    src={Hobbit1}
-                                    alt=""
-                                ></Image>
-                            </Box>
-                            <Box>
-                                <Typography
-                                    variant="h6"
-                                    gutterBottom
-                                    component="div"
-                                >
-                                    <strong>The hobbit</strong>
-                                </Typography>
-                            </Box>
-                            <Rating
-                                name="text-feedback"
-                                readOnly
-                                precision={0.5}
-                                value={0}
-                                emptyIcon={
-                                    <StarIcon
-                                        style={{ opacity: 0.55 }}
-                                        fontSize="inherit"
-                                    />
-                                }
-                            />
-                            <Box>
-                                <ThemeProvider theme={theme}>
-                                    <Button
-                                        sx={{
-                                            marginBlockEnd: "8.5%",
-                                            marginTop: "10px",
-                                        }}
-                                        size="medium"
-                                        disableElevation
-                                        variant="contained"
-                                    >
-                                        Adicionar ao carrinho
-                                    </Button>
-                                </ThemeProvider>
-                            </Box>
-                        </Box>
+                    {news}
                     </Carousel>
                 </Container>
             </div>
