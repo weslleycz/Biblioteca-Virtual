@@ -22,6 +22,21 @@ app.prepare().then(() => {
         return app.render(req, res, "/", req.query);
     });
 
+    server.get("/logoff", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/logoff", req.query);
+    });
+
+    server.get("/adm", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/adm", req.query);
+    });
+
+    server.get("/adm/dashboard", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/dashboardAdm", req.query);
+    });
+
     server.use(
         "/doc",
         swaggerUi.serveFiles(null, options),

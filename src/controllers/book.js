@@ -20,9 +20,8 @@ const createBook = async (req, res) => {
         });
         return res.status(200).json({ status: "create", has_error: false });
     } catch (error) {
-        console.log();
         if (error.code === undefined) {
-            return res.status(300).redirect("/adm");
+            return res.status(300).redirect("/logoff");
         } else {
             return res.status(500).json({
                 status: "Esse livro já está cadastrado",
@@ -49,9 +48,8 @@ const updateBook = async (req, res) => {
         });
         return res.status(200).json({ status: "update", has_error: false });
     } catch (error) {
-        console.log();
         if (error.code === undefined) {
-            return res.status(300).redirect("/adm");
+            return res.status(300).redirect("/logoff");
         } else {
             return res.status(500).json({
                 status: "Este livro não está cadastrado",
@@ -74,9 +72,8 @@ const deleteBook = async (req, res) => {
         });
         return res.status(200).json({ status: "delete", has_error: false });
     } catch (error) {
-        console.log();
         if (error.code === undefined) {
-            return res.status(300).redirect("/adm");
+            return res.status(300).redirect("/logoff");
         } else {
             return res.status(500).json({
                 status: "Este livro não está cadastrado",

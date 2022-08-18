@@ -43,12 +43,12 @@ const loginADM = async (req, res) => {
             } else {
                 return res
                     .status(400)
-                    .json({ status: "Senha incorreta", has_error: true });
+                    .json({ status: "Senha incorreta!", has_error: true });
             }
         } else {
             return res
                 .status(400)
-                .json({ status: "Não registrado", has_error: true });
+                .json({ status: "Não registrado!", has_error: true });
         }
     } catch (error) {
         return res.status(500).json({ status: "error", has_error: true });
