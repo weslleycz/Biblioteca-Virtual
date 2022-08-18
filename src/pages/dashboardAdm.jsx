@@ -1,19 +1,19 @@
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useEffect,useState } from "react";
+import { EditBook } from "../components/EditBook";
 
 const dashboardAdm = () => {
     const [cookies, setCookie] = useCookies(["token"]);
-    const [deshbord, setDeshbord]=useState(<></>)
-
+    const [deshbord, setDeshbord] = useState(<></>);
     useEffect(() => {
-        if (cookies.user==="adm") {
-            setDeshbord(<h1>11111</h1>)
+        if (cookies.user === "adm") {
+            setDeshbord(
+                <EditBook></EditBook>
+            );
         }
-      },[])
+    }, []);
 
-    return <>
-    {deshbord}
-    </>
+    return <>{deshbord}</>;
 };
 
 export default dashboardAdm;

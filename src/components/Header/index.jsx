@@ -16,10 +16,10 @@ export const Header = () => {
                 <Image height="60%" src={Logo} alt="Logo" />
                 </Link>
                 <nav>
-                    <a href="#" className={Styles.active}>
+                    <a href="/" className={Styles.active}>
                         Home
                     </a>
-                    <a href="#">Sobre</a>
+                    <a href="/about">Sobre</a>
                 </nav>
                 <div>
                     <ThemeProvider theme={theme}>

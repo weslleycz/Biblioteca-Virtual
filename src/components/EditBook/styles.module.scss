@@ -1,0 +1,20 @@
+@import "../../styles/theme/";
+.conteinerBook {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+    background: #ffffff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    img {
+        margin-left: 0.5%;
+        margin-right: 0.5%;
+        width: 23.5%;
+        @media only screen and (max-width: 480px) {
+            padding: 6%;
+            margin: 0 auto;
+            margin-top: 3%;
+            width: 100%;
+        }
+    }
+}
