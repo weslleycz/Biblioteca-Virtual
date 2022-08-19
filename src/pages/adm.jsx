@@ -23,72 +23,74 @@ const ADM = () => {
 
     React.useEffect(() => {
         console.log(cookies.user);
-        if (cookies.user===undefined||cookies.user==="") {
-            setloginScrim( <ThemeProvider theme={theme}>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            marginTop: 8,
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                        }}
-                    >
-                        <Avatar
+        if (cookies.user === undefined || cookies.user === "") {
+            setloginScrim(
+                <ThemeProvider theme={theme}>
+                    <Container component="main" maxWidth="xs">
+                        <CssBaseline />
+                        <Box
                             sx={{
-                                m: 1,
-                                bgcolor: "#16c09b",
-                                width: "105px",
-                                height: "105px",
+                                marginTop: 8,
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
                             }}
                         >
-                            <Image src={avatarADM} alt="Logo" />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Login
-                        </Typography>
-                        <Box
-                            component="form"
-                            onSubmit={handleSubmit}
-                            noValidate
-                            sx={{ mt: 1 }}
-                        >
-                            <TextField
-                                margin="username"
-                                required
-                                fullWidth
-                                id="username"
-                                label="Nome"
-                                name="username"
-                                autoComplete="username"
-                                autoFocus
-                            />
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Senha"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-                            {warning}
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
+                            <Avatar
+                                sx={{
+                                    m: 1,
+                                    bgcolor: "#16c09b",
+                                    width: "105px",
+                                    height: "105px",
+                                }}
                             >
-                                Entrar
-                            </Button>
+                                <Image src={avatarADM} alt="Logo" />
+                            </Avatar>
+                            <Typography component="h1" variant="h5">
+                                Login
+                            </Typography>
+                            <Box
+                                component="form"
+                                onSubmit={handleSubmit}
+                                noValidate
+                                sx={{ mt: 1 }}
+                            >
+                                <TextField
+                                    margin="username"
+                                    required
+                                    fullWidth
+                                    id="username"
+                                    label="Nome"
+                                    name="username"
+                                    autoComplete="username"
+                                    autoFocus
+                                />
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Senha"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                />
+                                {warning}
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}
+                                >
+                                    Entrar
+                                </Button>
+                            </Box>
                         </Box>
-                    </Box>
-                </Container>
-            </ThemeProvider> )
+                    </Container>
+                </ThemeProvider>
+            );
         }
-      },[])
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -131,13 +133,9 @@ const ADM = () => {
     };
 
     if (cookies.user === "adm") {
-        Router.push("/adm/dashboard")
+        Router.push("/adm/dashboard");
     }
-    return (
-        <>
-        {loginScrim}
-        </>
-    )
+    return <>{loginScrim}</>;
 };
 
 export default ADM;

@@ -10,6 +10,7 @@ const {
     deleteBook,
     getBook,
     searchBook,
+    setBook
 } = require("./src/controllers/book");
 
 
@@ -35,5 +36,6 @@ router.put("/updateBook/:id", updateBook);
 router.delete("/deleteBook/:id", deleteBook);
 router.get("/getBook", getBook);
 router.get("/searchBook/:title", searchBook);
+router.get("/setBook/:id", setBook);
 
 module.exports = { router };

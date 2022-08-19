@@ -8,11 +8,12 @@ const createBook = async (req, res) => {
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
         const token = verify(req.headers.authorization, secret);
-        const { ISBN, title, author, year,url } = req.body;
+        const { ISBN, title, author, year,url,description } = req.body;
         const data = await prismaClient.book.create({
             data: {
                 ISBN: ISBN,
                 title: title,
+                description:description,
                 author: author,
                 year: year,
                 aDMId: token.data,
@@ -111,4 +112,20 @@ const searchBook = async (req, res) => {
     }
 };
 
-module.exports = { createBook, updateBook, deleteBook, getBook, searchBook };
+const setBook = async (req, res) => {
+    console.log(bgRed(req.bgMagenta));
+    try {
+        const id = req.params.id;
+        console.log(id);
+        const data = await prismaClient.book.findUnique({
+            where: {
+                id:id
+            },
+        });
+        return res.status(200).json({ data: data, has_error: false });
+    } catch (error) {
+        return res.status(500).json({ status: "error", has_error: true });
+    }
+};
+
+module.exports = { createBook, updateBook, deleteBook, getBook, searchBook ,setBook};

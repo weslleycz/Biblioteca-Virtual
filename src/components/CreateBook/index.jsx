@@ -73,6 +73,7 @@ export const CreateBook = () => {
     const [title, setTitle] = useState();
     const [year, setYear] = useState();
     const [author, setAuthor] = useState();
+    const [description, setDescription] = useState();
 
     const handlesubmit = async () => {
         console.log(selectedImage);
@@ -98,6 +99,7 @@ export const CreateBook = () => {
                                 title: title,
                                 year: year,
                                 author: author,
+                                description:description
                             },
                             {
                                 headers: {
@@ -111,7 +113,7 @@ export const CreateBook = () => {
                             setYear("");
                             setAuthor("");
                             getBook();
-                            handleClose()
+                            handleClose();
                         });
                 });
             }
@@ -272,6 +274,18 @@ export const CreateBook = () => {
                                                 marginBlockEnd: "1.5%",
                                             }}
                                             onClick={handleClick}
+                                        />
+                                        <TextField
+                                            id="outlined-multiline-static"
+                                            label="Sinopse"
+                                            onChange={(e) =>
+                                                setDescription(e.target.value)
+                                            }
+                                            multiline
+                                            rows={4}
+                                            sx={{
+                                                marginBlockEnd: "1%",
+                                            }}
                                         />
                                         <ThemeProvider theme={theme}>
                                             <Button

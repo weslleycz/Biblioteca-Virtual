@@ -37,6 +37,21 @@ app.prepare().then(() => {
         return app.render(req, res, "/dashboardAdm", req.query);
     });
 
+    server.get("/select/*", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/select", req.query);
+    });
+
+    server.get("/login", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/login", req.query);
+    });
+
+    server.get("/books", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/books", req.query);
+    });
+
     server.use(
         "/doc",
         swaggerUi.serveFiles(null, options),

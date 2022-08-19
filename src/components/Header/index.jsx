@@ -19,13 +19,15 @@ export const Header = () => {
                     <a href="/" className={Styles.active}>
                         Home
                     </a>
+                    <a href="/books">Livros</a>
                     <a href="/about">Sobre</a>
                 </nav>
                 <div>
                     <ThemeProvider theme={theme}>
                         <Stack spacing={1} direction="row">
                             <Button variant="contained">Cadastre-se</Button>
-                            <Button variant="text">Entrar</Button>
+                            <Button href="/login"
+                            variant="text">Entrar</Button>
                         </Stack>
                     </ThemeProvider>
                 </div>

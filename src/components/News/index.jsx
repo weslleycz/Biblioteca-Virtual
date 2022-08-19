@@ -97,8 +97,8 @@ export const News = () => {
     );
 
     const getNews = async () => {
-        const data = await axios.get("/getBook");
-        const books = data.data.data.map((item) => {
+        let data = await axios.get("/getBook");
+        const books = data.data.data.reverse().map((item) => {
             return (
                 <>
                 <Book 
@@ -119,8 +119,11 @@ export const News = () => {
             <div className="carosel-conteiner">
                 <Container>
                     <Typography
-                        sx={{ marginTop: "1.3rem" }}
-                        variant="h5"
+                        sx={{ marginTop: "3.8rem",
+                        marginBlockEnd:"1rem",
+                        fontStyle:"italic"
+                     }}
+                        variant="h6"
                         gutterBottom
                     >
                         Adicionados Recentemente
