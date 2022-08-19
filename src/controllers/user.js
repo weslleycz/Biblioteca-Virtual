@@ -8,22 +8,16 @@ const { bgGreen, bgMagenta, bgRed, bgYellow, bgCyan } = color;
 const createUser = async (req, res) => {
     try {
         console.log(bgCyan(req.method));
-        const {
-            password,
-            registration,
-            category,
-            name,
-            telephone,
-            email,
-        } = req.body;
+        const { password, registration, category, name, telephone, email } =
+            req.body;
         const data = await prismaClient.user.create({
             data: {
                 password: crypyPassword(password),
-                registration:registration,
-                category:category,
-                name:name,
-                telephone:telephone,
-                email:email,
+                registration: registration,
+                category: category,
+                name: name,
+                telephone: telephone,
+                email: email,
             },
         });
         return res.status(200).json({ status: "create", has_error: false });
@@ -32,13 +26,13 @@ const createUser = async (req, res) => {
     }
 };
 
-const deleteBook = async (req, res) => {
+const deleteUser = async (req, res) => {
     console.log(bgRed(req.method));
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
         const token = verify(req.headers.authorization, secret);
         const id = req.params.id;
-        const book = await prismaClient.book.delete({
+        const user = await prismaClient.user.delete({
             where: {
                 id: id,
             },
@@ -46,10 +40,10 @@ const deleteBook = async (req, res) => {
         return res.status(200).json({ status: "delete", has_error: false });
     } catch (error) {
         if (error.code === undefined) {
-            return res.status(300).redirect("/logoff");
+            return res.status(300).redirect("/off");
         } else {
             return res.status(500).json({
-                status: "Este livro não está cadastrado",
+                status: "Este usuario não está cadastrado",
                 has_error: true,
             });
         }
@@ -89,4 +83,4 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports ={createUser,loginUser}
+module.exports = { createUser, loginUser, deleteUser };

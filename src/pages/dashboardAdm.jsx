@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { EditBook } from "../components/EditBook";
+import { CreateBook } from "../components/CreateBook";
+import Router from "next/router";
 
 const dashboardAdm = () => {
     const [cookies, setCookie] = useCookies(["token"]);
@@ -8,9 +9,11 @@ const dashboardAdm = () => {
     useEffect(() => {
         if (cookies.user === "adm") {
             setDeshbord(
-                <EditBook></EditBook>
-            );
-        }
+                <CreateBook></CreateBook>
+            )
+        }else{
+            Router.push("/adm");   
+        };
     }, []);
 
     return <>{deshbord}</>;

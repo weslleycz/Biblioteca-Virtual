@@ -1,15 +1,12 @@
 @import "../../styles/theme/";
 .item {
     border-radius: 3px 10px 10px 3px;
-    margin-bottom: 1%;
-    background: rgb(152, 65, 252);
-
+    padding: 1%;
+    cursor: pointer;
     &:hover{
         backdrop-filter: blur( 10px );
         -webkit-backdrop-filter: blur( 10px );
-        filter: blur( 5px );
-        border-radius: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.18);
+        transform: scale(1.05);
         //filter: opacity(22px)
     }
 }

@@ -8,7 +8,7 @@ const createBook = async (req, res) => {
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
         const token = verify(req.headers.authorization, secret);
-        const { ISBN, title, author, year } = req.body;
+        const { ISBN, title, author, year,url } = req.body;
         const data = await prismaClient.book.create({
             data: {
                 ISBN: ISBN,
@@ -16,12 +16,13 @@ const createBook = async (req, res) => {
                 author: author,
                 year: year,
                 aDMId: token.data,
+                cover:url
             },
         });
         return res.status(200).json({ status: "create", has_error: false });
     } catch (error) {
         if (error.code === undefined) {
-            return res.status(300).redirect("/logoff");
+            return res.status(300).redirect("/off");
         } else {
             return res.status(500).json({
                 status: "Esse livro já está cadastrado",
@@ -49,7 +50,7 @@ const updateBook = async (req, res) => {
         return res.status(200).json({ status: "update", has_error: false });
     } catch (error) {
         if (error.code === undefined) {
-            return res.status(300).redirect("/logoff");
+            return res.status(300).redirect("/off");
         } else {
             return res.status(500).json({
                 status: "Este livro não está cadastrado",
@@ -73,7 +74,7 @@ const deleteBook = async (req, res) => {
         return res.status(200).json({ status: "delete", has_error: false });
     } catch (error) {
         if (error.code === undefined) {
-            return res.status(300).redirect("/logoff");
+            return res.status(300).redirect("/off");
         } else {
             return res.status(500).json({
                 status: "Este livro não está cadastrado",

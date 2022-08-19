@@ -22,9 +22,9 @@ app.prepare().then(() => {
         return app.render(req, res, "/", req.query);
     });
 
-    server.get("/logoff", (req, res) => {
+    server.get("/off", (req, res) => {
         console.log(bgMagenta(req.method));
-        return app.render(req, res, "/logoff", req.query);
+        return app.render(req, res, "/off", req.query);
     });
 
     server.get("/adm", (req, res) => {

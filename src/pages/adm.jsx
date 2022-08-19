@@ -9,11 +9,11 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import Image from "next/image";
+import Router from "next/router";
 import * as React from "react";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import avatarADM from "../assets/adm.svg";
-import Router from "next/router";
 import { theme } from "../styles/theme/materialUi";
 
 const ADM = () => {
@@ -22,7 +22,8 @@ const ADM = () => {
     const [cookies, setCookie] = useCookies(["token"]);
 
     React.useEffect(() => {
-        if (cookies.user===undefined) {
+        console.log(cookies.user);
+        if (cookies.user===undefined||cookies.user==="") {
             setloginScrim( <ThemeProvider theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
