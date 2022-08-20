@@ -8,6 +8,7 @@ const Off = () => {
     useEffect(() => {
         setCookie("token", "");
         setCookie("user", "");
+        removeCookie()
         Router.push("/");
       },[]);
 

@@ -116,7 +116,6 @@ const setBook = async (req, res) => {
     console.log(bgRed(req.bgMagenta));
     try {
         const id = req.params.id;
-        console.log(id);
         const data = await prismaClient.book.findUnique({
             where: {
                 id:id

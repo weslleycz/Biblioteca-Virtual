@@ -59,10 +59,13 @@ export const Hero = () => {
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                     <Button
+                                        href="/"
                                         variant="contained"
-                                        sx={{ marginTop: 3, width: "57%" }}
+                                        sx={{ marginTop: 3, width: "67%",
+                                        borderRadius:"25px"
+                                     }}
                                         fullWidth={true}
-                                        size="medium"
+                                        size="large"
                                         disableElevation
                                     >
                                         Cadastre-se

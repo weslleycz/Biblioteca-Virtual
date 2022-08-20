@@ -1,13 +1,13 @@
+import { useRouter } from "next/router";
 import { Hero } from "../components/Hero";
-import { useCookies } from "react-cookie";
 import { News } from "../components/News";
 
 export default function Home() {
-    const [cookies, setCookie] = useCookies(["token"]);
+    const router = useRouter();
     return (
-    <>
-    <Hero></Hero>
-    <News></News>
-    </>
+        <>
+            <Hero></Hero>
+            <News></News>
+        </>
     );
 }

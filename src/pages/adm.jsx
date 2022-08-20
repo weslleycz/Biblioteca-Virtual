@@ -20,7 +20,6 @@ const ADM = () => {
     const [warning, setWarning] = useState("");
     const [loginScrim, setloginScrim] = useState(<></>);
     const [cookies, setCookie] = useCookies(["token"]);
-
     React.useEffect(() => {
         console.log(cookies.user);
         if (cookies.user === undefined || cookies.user === "") {

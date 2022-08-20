@@ -68,7 +68,7 @@ const books = () => {
                                     boxShadow:
                                         "0px 4px 4px rgba(22, 22, 22, 0.25)",
                                     width: "100%",
-                                    background: "#fdfffe",
+                                    background: "#f8f8f8",
                                 }}
                             >
                                 <InputBase
@@ -77,7 +77,7 @@ const books = () => {
                                     sx={{
                                         ml: 1,
                                         flex: 1,
-                                        background: "#fdfffe",
+                                        background: "#f8f8f8",
                                     }}
                                     placeholder="Busca livros..."
                                     inputProps={{

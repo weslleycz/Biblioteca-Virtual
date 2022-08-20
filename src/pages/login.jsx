@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 import Image from "next/image";
 import Router from "next/router";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useCookies } from "react-cookie";
 import leitor from "../assets/leitor.svg";
 import { theme } from "../styles/theme/materialUi";
@@ -17,50 +17,12 @@ import { theme } from "../styles/theme/materialUi";
 export default function Login() {
     const [warning, setWarning] = useState("");
     const [cookies, setCookie] = useCookies(["token"]);
+    const [connected, setConnected] = useState("");
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        if (data.get("email") != "" || data.get("password") != "") {
-            const login = await axios
-                .post("/loginUser", {
-                    email: data.get("email"),
-                    password: data.get("password"),
-                })
-                .catch((err) => {
-                    if (err.response.data.status != "Não registrado!") {
-                        setWarning(
-                            <Alert severity="error">
-                                {err.response.data.status}
-                            </Alert>
-                        );
-                    } else {
-                        setWarning(
-                            <Alert severity="warning">
-                                {err.response.data.status}
-                            </Alert>
-                        );
-                    }
-                })
-                .then((data) => {
-                    if (data != undefined) {
-                        setCookie("token", data.data.token);
-                        setCookie("user", "reader");
-                        Router.push("/");
-                    }
-                });
-        } else {
-            setWarning(
-                <Alert severity="warning">
-                    Você deve preceder todos os campos.
-                </Alert>
-            );
-        }
-    };
-
-    return (
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
+    useEffect(() => {
+        if (cookies.user === "" || cookies.user === undefined) {
+            setConnected(
+                <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
                     sx={{
@@ -118,6 +80,56 @@ export default function Login() {
                     </Box>
                 </Box>
             </Container>
+            )
+        }else{
+            Router.push("/");
+        }
+      },[]);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        if (data.get("email") != "" || data.get("password") != "") {
+            const login = await axios
+                .post("/loginUser", {
+                    email: data.get("email"),
+                    password: data.get("password"),
+                })
+                .catch((err) => {
+                    if (err.response.data.status != "Não registrado!") {
+                        setWarning(
+                            <Alert severity="error">
+                                {err.response.data.status}
+                            </Alert>
+                        );
+                    } else {
+                        setWarning(
+                            <Alert severity="warning">
+                                {err.response.data.status}
+                            </Alert>
+                        );
+                    }
+                })
+                .then((data) => {
+                    if (data != undefined) {
+                        setCookie("token", data.data.token);
+                        setCookie("user", "reader");
+                        Router.push("/");
+                        Router.reload(window.location.pathname)
+                    }
+                });
+        } else {
+            setWarning(
+                <Alert severity="warning">
+                    Você deve preceder todos os campos.
+                </Alert>
+            );
+        }
+    };
+
+    return (
+        <ThemeProvider theme={theme}>
+           {connected}
         </ThemeProvider>
     );
 }
