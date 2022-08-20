@@ -7,7 +7,8 @@ CREATE TABLE "Users" (
     "telephone" TEXT NOT NULL,
     "pendency" BOOLEAN NOT NULL DEFAULT false,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL
+    "password" TEXT NOT NULL,
+    "idCar" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -17,6 +18,8 @@ CREATE TABLE "Books" (
     "title" TEXT NOT NULL,
     "author" TEXT NOT NULL,
     "year" TEXT NOT NULL,
+    "rating" REAL NOT NULL DEFAULT 0,
+    "description" TEXT,
     "cover" TEXT,
     "loanId" TEXT,
     "aDMId" TEXT,

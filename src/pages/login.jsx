@@ -112,10 +112,12 @@ export default function Login() {
                 })
                 .then((data) => {
                     if (data != undefined) {
-                        setCookie("token", data.data.token);
-                        setCookie("user", "reader");
-                        Router.push("/");
-                        Router.reload(window.location.pathname)
+                        setCookie("token", data.data.token,{
+                        
+                        });
+                        setCookie("user", "reader",{
+                        });
+                        Router.back()
                     }
                 });
         } else {

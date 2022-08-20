@@ -20,6 +20,7 @@ model User {
     pendency     Boolean @default(false)
     email        String  @unique
     password     String
+    idCar         String
     Loan         Loan[]
 
     @@map("Users")

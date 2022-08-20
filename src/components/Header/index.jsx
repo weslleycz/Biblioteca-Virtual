@@ -1,4 +1,6 @@
 import Logout from "@mui/icons-material/Logout";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ViewStreamIcon from "@mui/icons-material/ViewStream";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
@@ -9,7 +11,7 @@ import Stack from "@mui/material/Stack";
 import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import Logo from "../../assets/logo.svg";
@@ -21,7 +23,7 @@ export const Header = () => {
     const [connected, setConnected] = useState("");
     const char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const [userArea, setUserArea] = useState("");
-    const router = useRouter()
+    const router = useRouter();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -32,10 +34,10 @@ export const Header = () => {
     };
 
     const handleLogout = () => {
-        setCookie("token", "");
-        setCookie("user", "");
-        router.reload(window.location.pathname)
-    }
+        removeCookie("token")
+        removeCookie("user")
+        router.reload(window.location.pathname);
+    };
 
     useEffect(() => {
         if (cookies.user === "" || cookies.user === undefined) {
@@ -62,9 +64,20 @@ export const Header = () => {
                     <a href="/adm/dashboard">
                         <MenuItem>
                             <ListItemIcon>
-                                <Logout fontSize="small" />
+                                <ViewStreamIcon fontSize="small" />
                             </ListItemIcon>
                             Dashboard
+                        </MenuItem>
+                    </a>
+                );
+            } else {
+                setUserArea(
+                    <a href="/">
+                        <MenuItem>
+                            <ListItemIcon>
+                                <ShoppingCartIcon fontSize="small" />
+                            </ListItemIcon>
+                            Carrinho
                         </MenuItem>
                     </a>
                 );
@@ -78,21 +91,28 @@ export const Header = () => {
                     <Image height="60%" src={Logo} alt="Logo" />
                 </Link>
                 <nav>
-                    <a href="/" className={
-                        router.route==="/" ? Styles.active : "" 
-                        }>
+                    <a
+                        href="/"
+                        className={router.route === "/" ? Styles.active : ""}
+                    >
                         Home
                     </a>
-                    <a href="/books"
-                    className={
-                        router.route==="/books" ? Styles.active : "" 
+                    <a
+                        href="/books"
+                        className={
+                            router.route === "/books" ? Styles.active : ""
                         }
-                    >Livros</a>
-                    <a  href="/about"
-                    className={
-                        router.route==="/about" ? Styles.active : "" 
+                    >
+                        Livros
+                    </a>
+                    <a
+                        href="/about"
+                        className={
+                            router.route === "/about" ? Styles.active : ""
                         }
-                    >Sobre</a>
+                    >
+                        Sobre
+                    </a>
                 </nav>
                 {connected}
                 <Menu
@@ -138,9 +158,7 @@ export const Header = () => {
                 >
                     <Divider />
                     {userArea}
-                    <MenuItem
-                    onClick={()=>handleLogout()}
-                    >
+                    <MenuItem onClick={() => handleLogout()}>
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>

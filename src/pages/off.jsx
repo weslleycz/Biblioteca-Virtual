@@ -6,9 +6,8 @@ const Off = () => {
     const [cookies, setCookie,removeCookie] = useCookies(["token"]);
 
     useEffect(() => {
-        setCookie("token", "");
-        setCookie("user", "");
-        removeCookie()
+        removeCookie("token")
+        removeCookie("user")
         Router.push("/");
       },[]);
 

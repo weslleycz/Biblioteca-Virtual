@@ -112,6 +112,7 @@ export const CreateBook = () => {
                             setTitle("");
                             setYear("");
                             setAuthor("");
+                            setDescription("");
                             getBook();
                             handleClose();
                         });

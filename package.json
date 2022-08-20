@@ -28,7 +28,9 @@
     "react-dom": "18.2.0",
     "react-multi-carousel": "^2.8.2",
     "sass": "^1.54.3",
-    "swagger-ui-express": "^4.5.0"
+    "swagger-ui-express": "^4.5.0",
+    "use-dexie": "^1.2.4",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "eslint": "8.21.0",

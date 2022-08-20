@@ -3,14 +3,14 @@ const { color } = require("console-log-colors");
 const { bgGreen } = color;
 const swaggerDocument = require("./src/swagger/doc.json");
 const { signupADM, loginADM } = require("./src/controllers/ADM");
-const{createUser,loginUser,deleteUser}= require("./src/controllers/user")
+const{createUser,loginUser,deleteUser,getIDCar}= require("./src/controllers/user")
 const {
     createBook,
     updateBook,
     deleteBook,
     getBook,
     searchBook,
-    setBook
+    setBook,
 } = require("./src/controllers/book");
 
 
@@ -29,6 +29,7 @@ router.post("/loginADM", loginADM);
 router.post("/signupUser",createUser);
 router.post("/loginUser",loginUser);
 router.delete("/deleteUser/:id",deleteUser);
+router.get("/getIdCar/:id",getIDCar);
 
 //Book
 router.post("/createBook", createBook);

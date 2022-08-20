@@ -3,6 +3,9 @@ import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
+import { doc ,setDoc} from "firebase/firestore";
+import { firestore } from "../servers/firebase";
+import { useCookies } from "react-cookie";
 import InputBase from "@mui/material/InputBase";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -12,7 +15,7 @@ import { Book } from "../components/Book";
 import Styles from "./books.module.scss";
 const books = () => {
     const [book, setBook] = useState([]);
-
+    const [cookies, setCookie] = useCookies(["token"]);
     const getBook = async () => {
         const data = await axios.get("/getBook");
         setBook(
@@ -21,6 +24,7 @@ const books = () => {
             })
         );
     };
+
 
     useEffect(() => {
         getBook();

@@ -6,22 +6,22 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
+import { useCookies } from "react-cookie";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import Image from "next/image";
 import Router from "next/router";
 import * as React from "react";
 import { useState } from "react";
-import { useCookies } from "react-cookie";
+
 import avatarADM from "../assets/adm.svg";
 import { theme } from "../styles/theme/materialUi";
 
 const ADM = () => {
     const [warning, setWarning] = useState("");
     const [loginScrim, setloginScrim] = useState(<></>);
-    const [cookies, setCookie] = useCookies(["token"]);
+    const [cookies, setCookie,removeCookie] = useCookies(["token"]);
     React.useEffect(() => {
-        console.log(cookies.user);
         if (cookies.user === undefined || cookies.user === "") {
             setloginScrim(
                 <ThemeProvider theme={theme}>
