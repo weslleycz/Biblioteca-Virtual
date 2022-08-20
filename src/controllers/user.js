@@ -58,7 +58,6 @@ const getIDCar = async (req, res) => {
     try {
         const secret = process.env.secret || "GN8Mrz7EJC%3";
         const token = verify(req.params.id, secret);
-        console.log(token);
         const data = await prismaClient.user.findUnique({
             where: {
                id:token.data
@@ -67,7 +66,6 @@ const getIDCar = async (req, res) => {
                 idCar:true
             }
         });
-        console.log(data);
         return res.status(200).json({ data: data, has_error: false });
     } catch (error) {
         if (error.code === undefined) {

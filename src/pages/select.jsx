@@ -50,13 +50,13 @@ const Select = () => {
         if (cookies.user === "reader") {
             handleClick();
             const data = await axios.get(`/getIdCar/${cookies.token}`);
-            await setDoc(doc(firestore, data.data.data.idCar, book.title), {
+            await setDoc(doc(firestore, data.data.data.idCar, book.id), {
                 book: book.title,
                 cover: book.cover,
                 id: book.id,
             });
             handleClick();
-            setTimeout(handleClose,1000)
+            setTimeout(handleClose, 1000);
         } else {
             Router.push("/login");
         }
@@ -81,14 +81,14 @@ const Select = () => {
                     open={open}
                     autoHideDuration={6000}
                     onClose={handleClose}
-                    anchorOrigin={{ vertical: "bottom", horizontal:"right" }}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 >
                     <Alert
                         onClose={handleClose}
                         severity="success"
                         sx={{ width: "100%" }}
                     >
-                        Adicionado!
+                        Adicionado ao carrinho!!!
                     </Alert>
                 </Snackbar>
                 <Grid container spacing={1} columns={isWide ? 16 : 5}>

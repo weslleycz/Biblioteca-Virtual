@@ -19,12 +19,12 @@ import { theme } from "../../styles/theme/materialUi";
 import Styles from "./styles.module.scss";
 
 export const Header = () => {
-    const [cookies, setCookie,removeCookie] = useCookies(["token"]);
+    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
     const [connected, setConnected] = useState("");
     const char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const [userArea, setUserArea] = useState("");
     const router = useRouter();
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -34,9 +34,9 @@ export const Header = () => {
     };
 
     const handleLogout = () => {
-        removeCookie("token")
-        removeCookie("user")
-        router.reload(window.location.pathname);
+        removeCookie("token");
+        removeCookie("user");
+        router.push("/");
     };
 
     useEffect(() => {
@@ -72,7 +72,7 @@ export const Header = () => {
                 );
             } else {
                 setUserArea(
-                    <a href="/">
+                    <a href="/cart">
                         <MenuItem>
                             <ListItemIcon>
                                 <ShoppingCartIcon fontSize="small" />
