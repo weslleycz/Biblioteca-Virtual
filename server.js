@@ -57,6 +57,11 @@ app.prepare().then(() => {
         return app.render(req, res, "/cart", req.query);
     });
 
+    server.get("/signUp", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/signUp", req.query);
+    });
+
     server.use(
         "/doc",
         swaggerUi.serveFiles(null, options),
@@ -66,7 +71,6 @@ app.prepare().then(() => {
     server.use(router);
 
     server.all("*", (req, res) => {
-        
         return handle(req, res);
     });
 

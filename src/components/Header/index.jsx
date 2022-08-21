@@ -36,16 +36,28 @@ export const Header = () => {
     const handleLogout = () => {
         removeCookie("token");
         removeCookie("user");
+        setConnected(
+            <div>
+                <ThemeProvider theme={theme}>
+                    <Stack spacing={1} direction="row">
+                        <Button href="/signUp" variant="contained">Cadastre-se</Button>
+                        <Button href="/login" variant="text">
+                            Entrar
+                        </Button>
+                    </Stack>
+                </ThemeProvider>
+            </div>
+        );
         router.push("/");
     };
 
     useEffect(() => {
-        if (cookies.user === "" || cookies.user === undefined) {
+        if (cookies.user === undefined) {
             setConnected(
                 <div>
                     <ThemeProvider theme={theme}>
                         <Stack spacing={1} direction="row">
-                            <Button variant="contained">Cadastre-se</Button>
+                            <Button href="/signUp" variant="contained">Cadastre-se</Button>
                             <Button href="/login" variant="text">
                                 Entrar
                             </Button>
@@ -104,14 +116,6 @@ export const Header = () => {
                         }
                     >
                         Livros
-                    </a>
-                    <a
-                        href="/about"
-                        className={
-                            router.route === "/about" ? Styles.active : ""
-                        }
-                    >
-                        Sobre
                     </a>
                 </nav>
                 {connected}

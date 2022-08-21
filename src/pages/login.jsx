@@ -4,12 +4,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import Image from "next/image";
 import Router from "next/router";
-import { useState,useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import leitor from "../assets/leitor.svg";
 import { theme } from "../styles/theme/materialUi";
@@ -23,68 +25,75 @@ export default function Login() {
         if (cookies.user === "" || cookies.user === undefined) {
             setConnected(
                 <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                    }}
-                >
-                    <Avatar
+                    <CssBaseline />
+                    <Box
                         sx={{
-                            m: 1,
-                            bgcolor: "#16c09b",
-                            width: "105px",
-                            height: "105px",
+                            marginTop: 8,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
                         }}
                     >
-                        <Image src={leitor} alt="Logo" />
-                    </Avatar>
-                    <Box
-                        component="form"
-                        onSubmit={handleSubmit}
-                        noValidate
-                        sx={{ mt: 1 }}
-                    >
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Senha"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        {warning}
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                        <Avatar
+                            sx={{
+                                m: 1,
+                                bgcolor: "#16c09b",
+                                width: "105px",
+                                height: "105px",
+                            }}
                         >
-                            Entrar
-                        </Button>
+                            <Image src={leitor} alt="Logo" />
+                        </Avatar>
+                        <Box
+                            component="form"
+                            onSubmit={handleSubmit}
+                            noValidate
+                            sx={{ mt: 1 }}
+                        >
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Senha"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                            />
+                            {warning}
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Entrar
+                            </Button>
+                            <Grid container justifyContent="flex-end">
+                                <Grid item>
+                                    <Link href="/signUp" variant="body2">
+                                    Não tem uma conta? Cadastre-se
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </Box>
                     </Box>
-                </Box>
-            </Container>
-            )
-        }else{
+                </Container>
+            );
+        } else {
             Router.push("/");
         }
-      },[]);
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -112,12 +121,9 @@ export default function Login() {
                 })
                 .then((data) => {
                     if (data != undefined) {
-                        setCookie("token", data.data.token,{
-                        
-                        });
-                        setCookie("user", "reader",{
-                        });
-                        Router.back()
+                        setCookie("token", data.data.token, {});
+                        setCookie("user", "reader", {});
+                        Router.back();
                     }
                 });
         } else {
@@ -129,9 +135,5 @@ export default function Login() {
         }
     };
 
-    return (
-        <ThemeProvider theme={theme}>
-           {connected}
-        </ThemeProvider>
-    );
+    return <ThemeProvider theme={theme}>{connected}</ThemeProvider>;
 }

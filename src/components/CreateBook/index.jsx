@@ -1,6 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
+import Snackbar from "@mui/material/Snackbar";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -18,12 +19,17 @@ import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { useEffect, useState } from "react";
+import { useEffect, useState,forwardRef } from "react";
 import { useCookies } from "react-cookie";
 import { storage } from "../../servers/firebase";
 import { theme } from "../../styles/theme/materialUi";
 import { Book } from "../Book";
 import Styles from "./styles.module.scss";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export const CreateBook = () => {
     const [book, setBook] = useState([]);
@@ -39,6 +45,21 @@ export const CreateBook = () => {
     const handleOpen = () => {
         setOpen(true);
         setBtn("none");
+    };
+
+    
+    const [openAlert, setOpenAlert] = useState(false);
+
+    const handleClickAlert = () => {
+        setOpenAlert(true);
+    };
+
+    const handleCloseAlert = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setOpenAlert(false);
     };
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -90,6 +111,7 @@ export const CreateBook = () => {
             (err) => console.log(err),
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                    handleClickAlert();
                     axios
                         .post(
                             "/createBook",
@@ -133,6 +155,21 @@ export const CreateBook = () => {
                 }}
                 fixed
             >
+                   <Snackbar
+                    open={openAlert}
+                    autoHideDuration={6000}
+                    onClose={handleCloseAlert}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                >
+                    <Alert
+                        onClose={handleCloseAlert}
+                        severity="success"
+                        sx={{ width: "100%" }}
+                    >
+                        Livro criado!!!
+                    </Alert>
+                </Snackbar>
+
                 <Card className={Styles.conteinerBook}>
                     <Card
                         sx={{

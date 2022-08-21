@@ -59,7 +59,7 @@ export const Hero = () => {
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                     <Button
-                                        href="/"
+                                        href="/signUp"
                                         variant="contained"
                                         sx={{ marginTop: 3, width: "67%",
                                         borderRadius:"25px"

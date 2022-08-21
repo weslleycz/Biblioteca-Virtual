@@ -27,6 +27,7 @@
     "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-multi-carousel": "^2.8.2",
+    "react-qr-code": "^2.0.7",
     "sass": "^1.54.3",
     "swagger-ui-express": "^4.5.0",
     "use-dexie": "^1.2.4",
