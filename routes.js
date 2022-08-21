@@ -18,7 +18,7 @@ const {
     setBook,
 } = require("./src/controllers/book");
 
-const {createLoan}=require("./src/controllers/loan")
+const { createLoan, getLoan, selectLoan } = require("./src/controllers/loan");
 
 const router = express.Router();
 
@@ -38,7 +38,9 @@ router.delete("/deleteUser/:id", deleteUser);
 router.get("/getIdCar/:id", getIDCar);
 
 //Loan
-router.post("/createLoan",createLoan)
+router.post("/createLoan", createLoan);
+router.get("/getLoan", getLoan);
+router.get("/selectLoan/:id", selectLoan);
 
 //Book
 router.post("/createBook", createBook);

@@ -27,7 +27,7 @@ const createLoan = async (req, res) => {
                     },
                 },
             });
-            return res.status(200).json({ status: "create", has_error: false });
+            return res.status(200).json({ data: data, has_error: false });
         } else {
             if (loan[0].startDate <= loan[0].endDate) {
                 return res.status(400).json({
@@ -61,4 +61,50 @@ const createLoan = async (req, res) => {
     }
 };
 
-module.exports = { createLoan };
+const getLoan = async (req, res) => {
+    console.log(bgYellow(req.method));
+    const secret = process.env.secret || "GN8Mrz7EJC%3";
+    try {
+        const token = verify(req.headers.authorization, secret);
+        const loan = await prismaClient.loan.findMany({
+            where: {
+                userId: token.data,
+            },
+        });
+        return res.status(200).json({ data: loan, has_error: false });
+    } catch (error) {
+        if (error.code === undefined) {
+            return res.status(300).redirect("/off");
+        } else {
+            return res.status(500).json({
+                status: "Este usuario não está cadastrado",
+                has_error: true,
+            });
+        }
+    }
+};
+
+const selectLoan = async (req, res) => {
+    console.log(bgYellow(req.method));
+    const secret = process.env.secret || "GN8Mrz7EJC%3";
+    try {
+        const token = verify(req.headers.authorization, secret);
+        const loan = await prismaClient.loan.findUnique({
+            where: {
+                id: req.params.id,
+            },
+        });
+        return res.status(200).json({ data: loan, has_error: false });
+    } catch (error) {
+        if (error.code === undefined) {
+            return res.status(300).redirect("/off");
+        } else {
+            return res.status(500).json({
+                status: "Este usuario não está cadastrado",
+                has_error: true,
+            });
+        }
+    }
+};
+
+module.exports = { createLoan, getLoan, selectLoan };
