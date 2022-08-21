@@ -77,10 +77,7 @@ const Cart = () => {
                 )
                 .then((response) => {
                     const { id } = response.data.data;
-                    deleteAll();
-                    if (deleteBook()) {
-                        Router.push(`/loan/${id}`);
-                    }
+                    deleteAll(id);
                 })
                 .catch((response) => {
                     setErr(response.response.data.status);
@@ -91,18 +88,20 @@ const Cart = () => {
 
     const deleteBook = async (id) => {
         const data = await axios.get(`/getIdCar/${cookies.token}`);
-         await deleteDoc(doc(firestore, data.data.data.idCar, id));
+        await deleteDoc(doc(firestore, data.data.data.idCar, id));
         getCart();
     };
 
-    const deleteAll = async () => {
+    const deleteAll = async (id) => {
         const data = await axios.get(`/getIdCar/${cookies.token}`);
-        await books.map((book) => {
+       const delet= await books.map((book) => {
             console.log(book);
             deleteDoc(doc(firestore, data.data.data.idCar, book.id));
-        });
-        getCart();
-        return true
+            return true;
+        })
+        if (delet[0]) {
+            Router.push(`/loan/${id}`);
+        }
     };
 
     const getCart = async () => {
