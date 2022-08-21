@@ -31,9 +31,7 @@ const createUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     console.log(bgRed(req.method));
-    const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
-        const token = verify(req.headers.authorization, secret);
         const id = req.params.id;
         const user = await prismaClient.user.delete({
             where: {

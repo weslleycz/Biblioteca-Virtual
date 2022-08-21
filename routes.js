@@ -3,7 +3,12 @@ const { color } = require("console-log-colors");
 const { bgGreen } = color;
 const swaggerDocument = require("./src/swagger/doc.json");
 const { signupADM, loginADM } = require("./src/controllers/ADM");
-const{createUser,loginUser,deleteUser,getIDCar}= require("./src/controllers/user")
+const {
+    createUser,
+    loginUser,
+    deleteUser,
+    getIDCar,
+} = require("./src/controllers/user");
 const {
     createBook,
     updateBook,
@@ -13,6 +18,7 @@ const {
     setBook,
 } = require("./src/controllers/book");
 
+const {createLoan}=require("./src/controllers/loan")
 
 const router = express.Router();
 
@@ -26,10 +32,13 @@ router.post("/signupADM", signupADM);
 router.post("/loginADM", loginADM);
 
 //User
-router.post("/signupUser",createUser);
-router.post("/loginUser",loginUser);
-router.delete("/deleteUser/:id",deleteUser);
-router.get("/getIdCar/:id",getIDCar);
+router.post("/signupUser", createUser);
+router.post("/loginUser", loginUser);
+router.delete("/deleteUser/:id", deleteUser);
+router.get("/getIdCar/:id", getIDCar);
+
+//Loan
+router.post("/createLoan",createLoan)
 
 //Book
 router.post("/createBook", createBook);
