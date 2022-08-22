@@ -1,0 +1,24 @@
+@mixin flag($color) {
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    background:$color;
+    text-align: center;
+    padding: 1%;
+    margin-block-end: 2%;
+    margin-left: 2%;
+    font-size: 80%;
+    height: 4%;
+    width: 25%;
+  }
+  
+  .pendent{
+    @include flag(#F65454)
+  }
+
+  .entregue{
+    @include flag(#FFE600)
+  }
+
+  .concluido{
+    @include flag(#52FF00)
+  }

@@ -42,7 +42,7 @@ export const MenuMobile = () => {
             <List>
                 {["Home", "Livros"].map((text, index) => (
                     <ListItem key={text} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton href={text == "Home" ? "/" : "/books"}>
                             <ListItemIcon>
                                 {index % 2 === 0 ? (
                                     <a href="/">

@@ -69,6 +69,11 @@ app.prepare().then(() => {
         return app.render(req, res, "/loan", req.query);
     });
 
+    server.get("/loans", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/loans", req.query);
+    });
+
     server.use(
         "/doc",
         swaggerUi.serveFiles(null, options),

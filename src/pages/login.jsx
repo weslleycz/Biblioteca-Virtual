@@ -82,7 +82,7 @@ export default function Login() {
                             <Grid container justifyContent="flex-end">
                                 <Grid item>
                                     <Link href="/signUp" variant="body2">
-                                    Não tem uma conta? Cadastre-se
+                                        Não tem uma conta? Cadastre-se
                                     </Link>
                                 </Grid>
                             </Grid>
@@ -98,7 +98,7 @@ export default function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        if (data.get("email") != "" || data.get("password") != "") {
+        if (data.get("email") !== "" || data.get("password") !== "") {
             const login = await axios
                 .post("/loginUser", {
                     email: data.get("email"),

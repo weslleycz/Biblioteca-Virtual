@@ -93,7 +93,7 @@ export const Header = () => {
             } else {
                 setUserArea(
                     <div>
-                        <a href="/cart">
+                        <a href="/loans">
                             <MenuItem>
                                 <ListItemIcon>
                                     <BookIcon fontSize="small" />
@@ -148,11 +148,13 @@ export const Header = () => {
                         </>
                     ) : (
                         <>
-                        <div style={{
-                            marginLeft:"1rem;"
-                        }}>
-                        <MenuMobile/>
-                        </div>
+                            <div
+                                style={{
+                                    marginLeft: "1rem;",
+                                }}
+                            >
+                                <MenuMobile />
+                            </div>
                         </>
                     )}
                     {connected}
