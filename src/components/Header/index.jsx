@@ -16,11 +16,14 @@ import { useRouter } from "next/router";
 import React, { createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import Logo from "../../assets/logo.svg";
+import { useMedia } from "../../hooks/useMedia";
 import { theme } from "../../styles/theme/materialUi";
+import { MenuMobile } from "../MenuMobile";
 import Styles from "./styles.module.scss";
 export const ConnectedContext = createContext();
 
 export const Header = () => {
+    const isWide = useMedia("(min-width: 480px)");
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
     const [connected, setConnected] = useState("");
     const char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -115,27 +118,43 @@ export const Header = () => {
         <header className={Styles.headerContainer}>
             <ConnectedContext.Provider value={{ setConnected }}>
                 <div className={Styles.headerContent}>
-                    <Link href="/">
-                        <Image height="60%" src={Logo} alt="Logo" />
-                    </Link>
-                    <nav>
-                        <a
-                            href="/"
-                            className={
-                                router.route === "/" ? Styles.active : ""
-                            }
-                        >
-                            Home
-                        </a>
-                        <a
-                            href="/books"
-                            className={
-                                router.route === "/books" ? Styles.active : ""
-                            }
-                        >
-                            Livros
-                        </a>
-                    </nav>
+                    {isWide ? (
+                        <>
+                            <Link href="/">
+                                <Image height="60%" src={Logo} alt="Logo" />
+                            </Link>
+                            <nav>
+                                <a
+                                    href="/"
+                                    className={
+                                        router.route === "/"
+                                            ? Styles.active
+                                            : ""
+                                    }
+                                >
+                                    Home
+                                </a>
+                                <a
+                                    href="/books"
+                                    className={
+                                        router.route === "/books"
+                                            ? Styles.active
+                                            : ""
+                                    }
+                                >
+                                    Livros
+                                </a>
+                            </nav>
+                        </>
+                    ) : (
+                        <>
+                        <div style={{
+                            marginLeft:"1rem;"
+                        }}>
+                        <MenuMobile/>
+                        </div>
+                        </>
+                    )}
                     {connected}
                     <Menu
                         anchorEl={anchorEl}
