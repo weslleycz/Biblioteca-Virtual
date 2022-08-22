@@ -7,12 +7,27 @@ describe('Cadastrar Usuário', () =>{
             data:{
                 password: '123',
                 category: 'Aluno',
-                name: 'jorge',
+                name: 'jorgel',
                 telephone: '1231',
                 email: 'jorge@gmail.com',
                 idCar:uuid()
             },
         })
-        expect(user.name).toBe('jorge')
-    })
+        expect(user.name).toBe('jorgel')
+    });
+})
+
+describe('Cadastrar um novo livro', () =>{
+    it('Registrar novo livro', async() =>{
+        const book = await prismaClient.book.create({
+            data: {
+                ISBN: '123',
+                title: 'Teste',
+                description:'Teste 123',
+                author: 'Teste 1',
+                year: '2020'
+            },
+        });
+        expect(book.title).toBe('Teste')
+    });
 })
