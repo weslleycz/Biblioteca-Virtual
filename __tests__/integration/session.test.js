@@ -30,4 +30,18 @@ describe('Cadastrar um novo livro', () =>{
         });
         expect(book.title).toBe('Teste')
     });
+    it('Não permitir datas inválidas', async() =>{
+        const book = await prismaClient.book.create({
+            data: {
+                ISBN: '334',
+                title: 'title',
+                description:'description',
+                author: 'author',
+                year: '2021'
+            },
+        });
+        const anoCorrente = new Date().getFullYear();
+
+        expect(parseInt(book.year) < anoCorrente).toBe(true)
+    })
 })
