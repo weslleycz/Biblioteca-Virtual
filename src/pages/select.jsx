@@ -3,7 +3,6 @@ import MuiAlert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Rating from "@mui/material/Rating";
 import Snackbar from "@mui/material/Snackbar";
 import { ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
@@ -121,12 +120,6 @@ const Select = () => {
                                 {book.author}
                             </a>
                         </Typography>
-                        <Rating
-                            name="size-medium"
-                            disabled
-                            size="medium"
-                            defaultValue={book.rating}
-                        />
                         <Typography
                             variant="subtitle1"
                             sx={{

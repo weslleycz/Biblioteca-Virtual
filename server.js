@@ -64,6 +64,11 @@ app.prepare().then(() => {
         return app.render(req, res, "/signUp", req.query);
     });
 
+    server.get("/loan/*", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/loan", req.query);
+    });
+
     server.use(
         "/doc",
         swaggerUi.serveFiles(null, options),
