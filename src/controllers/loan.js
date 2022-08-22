@@ -61,8 +61,58 @@ const createLoan = async (req, res) => {
     }
 };
 
+const updateLoan = async (req, res) => {
+    console.log(bgGreen(req.method));
+    const secret = process.env.secret || "GN8Mrz7EJC%3";
+    try {
+        const token = verify(req.headers.authorization, secret);
+        const loan = await prismaClient.loan.findUnique({
+            where: {
+                id: req.params.id,
+            },
+        });
+    
+        if (loan.statusLoan === "Aguardando a retirada") {
+            const update = await prismaClient.loan.update({
+                where:{
+                    id: req.params.id,
+                },
+                data: {
+                    statusLoan: "Retirado",
+                },
+            });
+            console.log(update);
+            return res.status(200).json({ status: "update", has_error: false });
+        } else if (loan.statusLoan != "Devolvido") {
+            const update = await prismaClient.loan.update({
+                where:{
+                    id: req.params.id,
+                },
+                data: {
+                    statusLoan: "Devolvido",
+                },
+            });
+            return res.status(200).json({ status: "update", has_error: false });
+        } else {
+            return res.status(400).json({
+                status: "Este livro já foi devolvido",
+                has_error: true,
+            });
+        }
+    } catch (error) {
+        if (error.code === undefined) {
+            return res.status(300).redirect("/off");
+        } else {
+            return res.status(500).json({
+                status: "Este usuario não está cadastrado",
+                has_error: true,
+            });
+        }
+    }
+};
+
 const getLoan = async (req, res) => {
-    console.log(bgYellow(req.method));
+    console.log(bgMagenta(req.method));
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
         const token = verify(req.headers.authorization, secret);
@@ -71,6 +121,25 @@ const getLoan = async (req, res) => {
                 userId: token.data,
             },
         });
+        return res.status(200).json({ data: loan, has_error: false });
+    } catch (error) {
+        if (error.code === undefined) {
+            return res.status(300).redirect("/off");
+        } else {
+            return res.status(500).json({
+                status: "Este usuario não está cadastrado",
+                has_error: true,
+            });
+        }
+    }
+};
+
+const getLoans = async (req, res) => {
+    console.log(bgMagenta(req.method));
+    const secret = process.env.secret || "GN8Mrz7EJC%3";
+    try {
+        const token = verify(req.headers.authorization, secret);
+        const loan = await prismaClient.loan.findMany();
         return res.status(200).json({ data: loan, has_error: false });
     } catch (error) {
         if (error.code === undefined) {
@@ -107,4 +176,4 @@ const selectLoan = async (req, res) => {
     }
 };
 
-module.exports = { createLoan, getLoan, selectLoan };
+module.exports = { createLoan, getLoan, selectLoan, updateLoan ,getLoans};

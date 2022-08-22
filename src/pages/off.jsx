@@ -1,16 +1,15 @@
-import { useCookies } from "react-cookie";
 import Router from "next/router";
 import { useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 const Off = () => {
-    const [cookies, setCookie,removeCookie] = useCookies(["token"]);
-
+    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
     useEffect(() => {
-        removeCookie("token")
-        removeCookie("user")
+        removeCookie("token");
+        removeCookie("user");
         Router.push("/");
-      },[]);
+    }, []);
 
-    return (<></>)
-}
-export default Off
+    return <></>;
+};
+export default Off;
