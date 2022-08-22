@@ -94,11 +94,11 @@ const Cart = () => {
 
     const deleteAll = async (id) => {
         const data = await axios.get(`/getIdCar/${cookies.token}`);
-       const delet= await books.map((book) => {
+        const delet = await books.map((book) => {
             console.log(book);
             deleteDoc(doc(firestore, data.data.data.idCar, book.id));
             return true;
-        })
+        });
         if (delet[0]) {
             Router.push(`/loan/${id}`);
         }
@@ -106,6 +106,7 @@ const Cart = () => {
 
     const getCart = async () => {
         const data = await axios.get(`/getIdCar/${cookies.token}`);
+
         const querySnapshot = await getDocs(
             collection(firestore, data.data.data.idCar)
         );

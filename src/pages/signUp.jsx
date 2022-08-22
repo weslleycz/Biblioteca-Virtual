@@ -1,18 +1,17 @@
-import Alert from "@mui/material/Alert";
+import { default as Alert, default as MuiAlert } from "@mui/material/Alert";
 import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
 import Link from "@mui/material/Link";
+import Snackbar from "@mui/material/Snackbar";
 import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import Router from "next/router";
-import { useEffect, useState ,forwardRef} from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { theme } from "../styles/theme/materialUi";
 
@@ -43,16 +42,19 @@ export default function SignUp() {
                 </Alert>
             );
         } else {
-            const create = await axios.post("/signupUser", user).then((res) => {
-                handleClick()
-                Router.push("/login");
-            }).catch((err) => {
-                Seterror(
-                    <Alert severity="error">
-                        {err.response.data.status}!
-                    </Alert>
-                );  
-            })
+            const create = await axios
+                .post("/signupUser", user)
+                .then((res) => {
+                    handleClick();
+                    Router.push("/login");
+                })
+                .catch((err) => {
+                    Seterror(
+                        <Alert severity="error">
+                            {err.response.data.status}!
+                        </Alert>
+                    );
+                });
         }
     };
 

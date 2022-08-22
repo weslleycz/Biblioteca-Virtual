@@ -1,6 +1,6 @@
-import "../styles/globals.scss";
-import { Header } from "../components/Header";
 import { CookiesProvider } from "react-cookie";
+import { Header } from "../components/Header";
+import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
     return (
