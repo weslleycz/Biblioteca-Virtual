@@ -43,5 +43,36 @@ describe('Cadastrar um novo livro', () =>{
         const anoCorrente = new Date().getFullYear();
 
         expect(parseInt(book.year) < anoCorrente).toBe(true)
+    });
+    it('Deve permitir inserir vários livros', async()=>{
+        const book1 = await prismaClient.book.create({
+            data: {
+                ISBN: '453',
+                title: 'O homem de giz',
+                description:'Homem de giz',
+                author: 'C.J Tudor',
+                year: '2019'
+            },
+        });
+        const book2 = await prismaClient.book.create({
+            data: {
+                ISBN: '3929',
+                title: 'João e Maria',
+                description:'João e Maria',
+                author: 'Sla',
+                year: '2010'
+            },
+        });
+        let cont1, 
+            cont2;
+        if(book1!=undefined && book2!=undefined){
+             cont1 = 1
+             cont2 = 1
+        }else{
+             cont1 = 0
+             cont2 = 0
+        }
+        const totalBooks = cont1 + cont2
+        expect(totalBooks).toBe(2)
     })
 })
