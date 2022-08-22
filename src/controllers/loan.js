@@ -20,8 +20,7 @@ const createLoan = async (req, res) => {
                 data: {
                     userId: token.data,
                     statusLoan: "Aguardando a retirada",
-                    startDate: moment().format(),
-                    endDate: moment().add(10, "days").format(),
+                    startDate: moment().format(),         
                     book: {
                         connect: books,
                     },
@@ -35,6 +34,14 @@ const createLoan = async (req, res) => {
                     has_error: true,
                 });
             } else {
+                await prismaClient.loan.update({
+                    where: {
+                        id:loan[0].id
+                    },
+                    data: {
+                        statusLoan:"Pendente"
+                    },
+                });
                 await prismaClient.user.update({
                     where: {
                         id: token.data,
@@ -78,6 +85,7 @@ const updateLoan = async (req, res) => {
                     id: req.params.id,
                 },
                 data: {
+                    endDate: moment().add(10, "days").format(),
                     statusLoan: "Retirado",
                 },
             });
@@ -139,8 +147,12 @@ const getLoans = async (req, res) => {
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
         const token = verify(req.headers.authorization, secret);
-        const loan = await prismaClient.loan.findMany();
-        return res.status(200).json({ data: loan, has_error: false });
+        const loans = await prismaClient.loan.findMany({
+            where:{
+                userId: token.data,
+            },
+        });
+        return res.status(200).json({ data: loans, has_error: false });
     } catch (error) {
         if (error.code === undefined) {
             return res.status(300).redirect("/off");
@@ -162,6 +174,18 @@ const selectLoan = async (req, res) => {
             where: {
                 id: req.params.id,
             },
+            include:{
+                book:{
+                    where:{
+                        loanId: req.params.id,
+                    },
+                    select:{
+                        title:true,
+                        cover:true,
+                        id:true,
+                    }
+                }
+            }
         });
         return res.status(200).json({ data: loan, has_error: false });
     } catch (error) {
