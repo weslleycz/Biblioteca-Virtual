@@ -70,9 +70,7 @@ const createLoan = async (req, res) => {
 
 const updateLoan = async (req, res) => {
     console.log(bgGreen(req.method));
-    const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
-        const token = verify(req.headers.authorization, secret);
         const loan = await prismaClient.loan.findUnique({
             where: {
                 id: req.params.id,
