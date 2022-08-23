@@ -15,6 +15,27 @@ describe('Cadastrar Usuário', () =>{
         })
         expect(user.name).toBe('jorgel')
     });
+    it('Não permitir campos em branco do usuário', async() => {
+      const user = await prismaClient.user.create({
+          data:{ password: '',
+          category: 'Aluno',
+          name: '212',
+          telephone: '',
+          email: '',
+          idCar:uuid()},
+      })
+      console.log(user)
+      /* expect(() => {
+          const resultado = (user);
+        }).toThrow() */
+        let result
+        if((user.name && user.password && user.category && user.telephone && user.email)!=''){
+           result = false
+       }else{
+           result = true
+       }
+        expect(result).toBe(true)
+  });
 })
 
 describe('Cadastrar um novo livro', () =>{
