@@ -5,6 +5,7 @@ const { encryptiPassword } = require("../servers/encryptiPassword");
 const { verify } = require("jsonwebtoken");
 const { sign } = require("jsonwebtoken");
 const { bgGreen, bgMagenta, bgRed, bgYellow, bgCyan } = color;
+const moment = require("moment");
 const { uuid } = require('uuidv4');
 
 const createUser = async (req, res) => {
@@ -77,6 +78,42 @@ const getIDCar = async (req, res) => {
     }
 }
 
+const getPendency = async (req, res) => {
+    console.log(bgMagenta(req.method));
+    try {
+        const data = await prismaClient.loan.findMany({
+            where:{
+                endDate:{
+                    lte:moment().format()
+                },
+            },
+            include:{
+                user:{
+                    select:{
+                        name:true,
+                        email:true,
+                        id:true,
+                        telephone:true, 
+                    },
+                }
+            }
+        })
+      data.map(async(userDeta)=>{
+            const user = await prismaClient.user.update({
+                where:{
+                    id:userDeta.userId
+                },
+                data:{
+                    pendency:true,
+                }
+            })
+        })
+        return res.status(200).json({ data: data, has_error: false });
+    } catch (error) {
+        return res.status(500).json({ status: "error", has_error: true });
+    }
+}
+
 const loginUser = async (req, res) => {
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
@@ -110,4 +147,4 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = { createUser, loginUser, deleteUser ,getIDCar};
+module.exports = { createUser, loginUser, deleteUser ,getIDCar,getPendency};

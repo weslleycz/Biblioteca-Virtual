@@ -2,6 +2,8 @@ const express = require("express");
 const next = require("next");
 const { color } = require("console-log-colors");
 const options = require("./src/swagger/config");
+const {upPendency}=require("./src/webhooks/upPendency")
+const cron = require("node-cron");
 const swaggerUi = require("swagger-ui-express");
 require('dotenv').config({
     path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
@@ -84,6 +86,11 @@ app.prepare().then(() => {
         return app.render(req, res, "/deliver", req.query);
     });
 
+    server.get("/outstanding", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/outstanding", req.query);
+    });
+
     server.get("/giveback", (req, res) => {
         console.log(bgMagenta(req.method));
         return app.render(req, res, "/giveback", req.query);
@@ -101,7 +108,12 @@ app.prepare().then(() => {
         return handle(req, res);
     });
 
+    cron.schedule("0 */10 * * *", () => {
+        upPendency()
+    });
+
     server.listen(port, () => {
         console.log(bgGreen(`🚀 Server started on port:${port}`));
     });
+
 });

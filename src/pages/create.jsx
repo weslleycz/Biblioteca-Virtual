@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { CreateBook } from "../components/CreateBook";
-
 import { useCookies } from "react-cookie";
 import Router from "next/router";
 const create = () => {
@@ -10,7 +9,7 @@ const create = () => {
         if (cookies.user === "adm") {
             setLogin(<CreateBook></CreateBook>)
         }else{
-            Router.push("/adm");
+            Router.push("/");
         }
     },[])
     return (

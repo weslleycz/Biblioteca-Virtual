@@ -115,6 +115,7 @@ const dashboardAdm = () => {
                             </a>
                         </Grid>
                         <Grid item xs={6}>
+                        <a href="/outstanding">
                             <Card
                                 sx={{
                                     height: "200px",
@@ -141,6 +142,7 @@ const dashboardAdm = () => {
                                     ></Image>
                                 </Stack>
                             </Card>
+                            </a>
                         </Grid>
                     </Grid>
                 </Container>

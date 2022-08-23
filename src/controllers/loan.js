@@ -98,6 +98,14 @@ const updateLoan = async (req, res) => {
                     statusLoan: "Devolvido",
                 },
             });
+            const user = await prismaClient.user.update({
+                where:{
+                   id:update.userId
+                },
+                data:{
+                    pendency:false,
+                }
+            })
             return res.status(200).json({ status: "update", has_error: false });
         } else {
             return res.status(400).json({
