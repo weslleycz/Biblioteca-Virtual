@@ -24,17 +24,17 @@ describe('Cadastrar Usuário', () =>{
           email: '',
           idCar:uuid()},
       })
-        let result
-        if((user.name && user.password && user.category && user.telephone && user.email)!=''){
-           result = false
-       }else{
-           result = true
-       }
-        expect(result).toBe(true)
+        let result = user.name && user.password && user.category && user.telephone && user.email
+        expect(result).toBe('')
   });
 })
 
 describe('Cadastrar um novo livro', () =>{
+
+    beforeAll(() => {
+
+    });
+
     it('Registrar novo livro', async() =>{
         const book = await prismaClient.book.create({
             data: {
@@ -102,12 +102,8 @@ describe('Cadastrar um novo livro', () =>{
                 year: '2000'
             },
         });
-        let result
-        if((book.title)!=''){
-           result = false
-       }else{
-           result = true
-       }
-        expect(result).toBe(true)
+        let result = book.title && book.author
+        console.log(result)
+        expect(result).toBe('')
   });
 })
