@@ -50,7 +50,50 @@
           }
         }
       }
-    }
+    },
+    "/signupUser": {
+        "post": {
+            "summary": "Cadastro de usuário",
+            "description": "Essa rota será responsável por cadastrar um novo usuário",
+            "tags": ["user"],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/properties"
+                        }
+                    }
+                }
+            }
+        },
+        "components": {
+            "schemas": {
+                "user": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "category": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        },
+                        "telephone": {
+                            "type": "number"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "idCar": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+      }
   },
   "consumes": [
     "application/json"
