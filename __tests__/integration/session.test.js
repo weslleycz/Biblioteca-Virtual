@@ -24,10 +24,6 @@ describe('Cadastrar Usuário', () =>{
           email: '',
           idCar:uuid()},
       })
-      console.log(user)
-      /* expect(() => {
-          const resultado = (user);
-        }).toThrow() */
         let result
         if((user.name && user.password && user.category && user.telephone && user.email)!=''){
            result = false
@@ -95,5 +91,23 @@ describe('Cadastrar um novo livro', () =>{
         }
         const totalBooks = cont1 + cont2
         expect(totalBooks).toBe(2)
-    })
+    });
+    it('Não permitir título vazio', async() => {
+        const book = await prismaClient.book.create({
+            data: {
+                ISBN: '634',
+                title: '',
+                description:'Testes',
+                author: 'João Paiva',
+                year: '2000'
+            },
+        });
+        let result
+        if((book.title)!=''){
+           result = false
+       }else{
+           result = true
+       }
+        expect(result).toBe(true)
+  });
 })
