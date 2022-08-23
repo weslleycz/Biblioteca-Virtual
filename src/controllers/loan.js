@@ -70,9 +70,7 @@ const createLoan = async (req, res) => {
 
 const updateLoan = async (req, res) => {
     console.log(bgGreen(req.method));
-    const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
-        const token = verify(req.headers.authorization, secret);
         const loan = await prismaClient.loan.findUnique({
             where: {
                 id: req.params.id,
@@ -100,6 +98,14 @@ const updateLoan = async (req, res) => {
                     statusLoan: "Devolvido",
                 },
             });
+            const user = await prismaClient.user.update({
+                where:{
+                   id:update.userId
+                },
+                data:{
+                    pendency:false,
+                }
+            })
             return res.status(200).json({ status: "update", has_error: false });
         } else {
             return res.status(400).json({

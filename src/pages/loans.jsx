@@ -29,7 +29,9 @@ const loans = () => {
                     return (
                         <>
                             <Divider></Divider>
-                            <a href={`/loan/${loan.id}`}>
+                            <a href={`/loan/${loan.id}`}
+                            key={loan.id}
+                            >
                                 <ListItem sx={{ width: "100%" }}>
                                     <Typography variant="body2" gutterBottom>
                                         {loan.id}
@@ -39,7 +41,7 @@ const loans = () => {
                                     "Aguardando a retirada" ? (
                                         <Moment
                                             style={{
-                                                color:"#F65454",
+                                                color:"#5fac87",
                                                 marginLeft: "52%",
                                             }}
                                             format="DD/MM/YYYY"
@@ -47,7 +49,7 @@ const loans = () => {
                                             {loan.startDate}
                                         </Moment>
                                     ) : (
-                                        "??/??/??"
+                                       ""
                                     )}
                                 </ListItem>
                                 <div

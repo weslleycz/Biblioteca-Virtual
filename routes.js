@@ -8,6 +8,7 @@ const {
     loginUser,
     deleteUser,
     getIDCar,
+    getPendency
 } = require("./src/controllers/user");
 const {
     createBook,
@@ -41,6 +42,7 @@ router.post("/loginADM", loginADM);
 router.post("/signupUser", createUser);
 router.post("/loginUser", loginUser);
 router.delete("/deleteUser/:id", deleteUser);
+router.get("/getPendency", getPendency);
 router.get("/getIdCar/:id", getIDCar);
 
 //Loan
