@@ -74,6 +74,21 @@ app.prepare().then(() => {
         return app.render(req, res, "/loans", req.query);
     });
 
+    server.get("/create", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/create", req.query);
+    });
+
+    server.get("/deliver", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/deliver", req.query);
+    });
+
+    server.get("/giveback", (req, res) => {
+        console.log(bgMagenta(req.method));
+        return app.render(req, res, "/giveback", req.query);
+    });
+
     server.use(
         "/doc",
         swaggerUi.serveFiles(null, options),
