@@ -5,52 +5,6 @@
     "version": "v2"
   },
   "paths": {
-    "/": {
-      "get": {
-        "operationId": "listVersionsv2",
-        "summary": "List API versions",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "200 300 response",
-            "examples": {
-              "application/json": "{\n    \"versions\": [\n        {\n            \"status\": \"CURRENT\",\n            \"updated\": \"2011-01-21T11:33:21Z\",\n            \"id\": \"v2.0\",\n            \"links\": [\n                {\n                    \"href\": \"http://127.0.0.1:8774/v2/\",\n                    \"rel\": \"self\"\n                }\n            ]\n        },\n        {\n            \"status\": \"EXPERIMENTAL\",\n            \"updated\": \"2013-07-23T11:33:21Z\",\n            \"id\": \"v3.0\",\n            \"links\": [\n                {\n                    \"href\": \"http://127.0.0.1:8774/v3/\",\n                    \"rel\": \"self\"\n                }\n            ]\n        }\n    ]\n}"
-            }
-          },
-          "300": {
-            "description": "200 300 response",
-            "examples": {
-              "application/json": "{\n    \"versions\": [\n        {\n            \"status\": \"CURRENT\",\n            \"updated\": \"2011-01-21T11:33:21Z\",\n            \"id\": \"v2.0\",\n            \"links\": [\n                {\n                    \"href\": \"http://127.0.0.1:8774/v2/\",\n                    \"rel\": \"self\"\n                }\n            ]\n        },\n        {\n            \"status\": \"EXPERIMENTAL\",\n            \"updated\": \"2013-07-23T11:33:21Z\",\n            \"id\": \"v3.0\",\n            \"links\": [\n                {\n                    \"href\": \"http://127.0.0.1:8774/v3/\",\n                    \"rel\": \"self\"\n                }\n            ]\n        }\n    ]\n}"
-            }
-          }
-        }
-      }
-    },
-    "/v2": {
-      "get": {
-        "operationId": "getVersionDetailsv2",
-        "summary": "Show API version details",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "200 203 response",
-            "examples": {
-              "application/json": "{\n    \"version\": {\n        \"status\": \"CURRENT\",\n        \"updated\": \"2011-01-21T11:33:21Z\",\n        \"media-types\": [\n            {\n                \"base\": \"application/xml\",\n                \"type\": \"application/vnd.openstack.compute+xml;version=2\"\n            },\n            {\n                \"base\": \"application/json\",\n                \"type\": \"application/vnd.openstack.compute+json;version=2\"\n            }\n        ],\n        \"id\": \"v2.0\",\n        \"links\": [\n            {\n                \"href\": \"http://127.0.0.1:8774/v2/\",\n                \"rel\": \"self\"\n            },\n            {\n                \"href\": \"http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf\",\n                \"type\": \"application/pdf\",\n                \"rel\": \"describedby\"\n            },\n            {\n                \"href\": \"http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl\",\n                \"type\": \"application/vnd.sun.wadl+xml\",\n                \"rel\": \"describedby\"\n            },\n            {\n              \"href\": \"http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl\",\n              \"type\": \"application/vnd.sun.wadl+xml\",\n              \"rel\": \"describedby\"\n            }\n        ]\n    }\n}"
-            }
-          },
-          "203": {
-            "description": "200 203 response",
-            "examples": {
-              "application/json": "{\n    \"version\": {\n        \"status\": \"CURRENT\",\n        \"updated\": \"2011-01-21T11:33:21Z\",\n        \"media-types\": [\n            {\n                \"base\": \"application/xml\",\n                \"type\": \"application/vnd.openstack.compute+xml;version=2\"\n            },\n            {\n                \"base\": \"application/json\",\n                \"type\": \"application/vnd.openstack.compute+json;version=2\"\n            }\n        ],\n        \"id\": \"v2.0\",\n        \"links\": [\n            {\n                \"href\": \"http://23.253.228.211:8774/v2/\",\n                \"rel\": \"self\"\n            },\n            {\n                \"href\": \"http://docs.openstack.org/api/openstack-compute/2/os-compute-devguide-2.pdf\",\n                \"type\": \"application/pdf\",\n                \"rel\": \"describedby\"\n            },\n            {\n                \"href\": \"http://docs.openstack.org/api/openstack-compute/2/wadl/os-compute-2.wadl\",\n                \"type\": \"application/vnd.sun.wadl+xml\",\n                \"rel\": \"describedby\"\n            }\n        ]\n    }\n}"
-            }
-          }
-        }
-      }
-    },
         "/singupUser": {
         "post": {
           "summary": "Cadastro de usuário",
@@ -64,14 +18,283 @@
               "tags": ["User"],
               "examples": {
                 "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"telephone\": \"12312312\", \n \"category\": \"aluno\", \n \"password\": \"12345\"}"
-
               }
             }
           }
         }
-      }
-   
+      },
+      "/loginUser": {
+        "post": {
+          "summary": "Login de usuário",
+          "tags": ["User"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por logar um  usuário",
+              "tags": ["User"],
+              "examples": {
+                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
+              }
+            }
+          }
+        }
+      },
+      "/loginUser": {
+        "post": {
+          "summary": "Login de usuário",
+          "tags": ["User"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por logar um  usuário",
+              "tags": ["User"],
+              "examples": {
+                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
+              }
+            }
+          }
+        }
+      },
+      "/deleteUser": {
+        "delete": {
+          "summary": "Deletar usuário",
+          "tags": ["User"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por Deletar um usuário um  usuário",
+              "tags": ["User"],
+              "examples": {
+                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
+              }
+            }
+          }
+        }
+      },
+      "/singupADM": {
+        "post": {
+          "summary": "criar um usuário administrador",
+          "tags": ["UserADM"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por criar um usuário adm",
+              "tags": ["UserADM"],
+              "examples": {
+                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
+              }
+            }
+          }
+        }
+      },
+      "/loginADM": {
+        "post": {
+          "summary": "Login de usuário administrador",
+          "tags": ["UserADM"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por logar um usuário adm",
+              "tags": ["UserADM"],
+              "examples": {
+                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
+              }
+            }
+          }
+        }
+      },
+      "/createBook": {
+        "post": {
+          "summary": "Criar um livro",
+          "tags": ["Book"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por criar um livro",
+              "tags": ["Book"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
+              }
+            }
+          }
+        }
+      },
+      "/updateBook": {
+        "put": {
+          "summary": "Atualiza um livro",
+          "tags": ["Book"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por atualizar um livro cadastrado no banco",
+              "tags": ["Book"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
+              }
+            }
+          }
+        }
+      },
+      "/deleteBook": {
+        "put": {
+          "summary": "deleta um livro",
+          "tags": ["Book"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por deletar um livro cadastrado no banco",
+              "tags": ["Book"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
+              }
+            }
+          }
+        }
+      },
+      "/searchBook": {
+        "get": {
+          "summary": "busca um livro",
+          "tags": ["Book"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por buscar um livro cadastrado no banco",
+              "tags": ["Book"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
+              }
+            }
+          }
+        }
+      },
+      "/getBook": {
+        "get": {
+          "summary": "recupera um livro",
+          "tags": ["Book"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por recuperar um livro cadastrado no banco",
+              "tags": ["Book"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
+              }
+            }
+          }
+        }
+      },
+      "/setBook": {
+        "get": {
+          "summary": "seta um livro",
+          "tags": ["Book"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por setar um livro cadastrado no banco",
+              "tags": ["Book"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
+              }
+            }
+          }
+        }
+      },
+      "/createLoan": {
+        "post": {
+          "summary": "cria um emprestimo",
+          "tags": ["User"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por realizar o emprestimo",
+              "tags": ["user"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\", \n \"name\": \"David\" }"
+              }
+            }
+          }
+        }
+      },
+      "/getLoan": {
+        "get": {
+          "summary": "recupera um emprestimo",
+          "tags": ["User"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por buscar um emprestimo",
+              "tags": ["user"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\", \n \"name\": \"David\" }"
+              }
+            }
+          }
+        }
+      },
+      "/selectLoan": {
+        "get": {
+          "summary": "seleciona um emprestimo",
+          "tags": ["User"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por selecionar um emprestimo",
+              "tags": ["user"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\", \n \"name\": \"David\" }"
+              }
+            }
+          }
+        }
+      },
+      "/updateLoan": {
+        "get": {
+          "summary": "atualiza um emprestimo",
+          "tags": ["User"],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Rota responsável por atualizar um emprestimo",
+              "tags": ["user"],
+              "examples": {
+                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\", \n \"name\": \"David\" }"
+              }
+            }
+          }
+        }
+      } 
   },
+  
   "consumes": [
     "application/json"
   ]
