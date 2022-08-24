@@ -107,6 +107,14 @@ const getPendency = async (req, res) => {
                     pendency:true,
                 }
             })
+            await prismaClient.loan.update({
+                where:{
+                    id:userDeta.userId
+                },
+                data:{
+                    statusLoan:"Pendente"
+                }
+            })
         })
         return res.status(200).json({ data: data, has_error: false });
     } catch (error) {

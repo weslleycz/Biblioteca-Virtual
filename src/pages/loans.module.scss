@@ -22,3 +22,7 @@
   .concluido{
     @include flag(#52FF00)
   }
+
+  .atrasado{
+    @include flag(#ff0000)
+  }

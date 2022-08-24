@@ -1,5 +1,7 @@
 import SendIcon from "@mui/icons-material/Send";
+import MuiAlert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
 import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
@@ -9,22 +11,42 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import Router from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState,forwardRef } from "react";
 import { useCookies } from "react-cookie";
 import { theme } from "../styles/theme/materialUi";
+
+const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const deliver = () => {
     const [cookies, setCookie] = useCookies(["token"]);
     const [deliver, setDeliver] = useState(<></>);
     const [loan, setLoan] = useState("");
     const [code, setCode] = useState(<></>);
+    const [open, setOpen] = useState(false);
 
     const updateLoan = async () => {
         if (loan != "") {
             const data = await axios.put(`/updateLoan/${loan}`);
             setCode("");
+            handleClick();
+            setTimeout(handleClose, 1000);
         }
     };
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setOpen(false);
+    };
+
 
     const getLoan = async (event) => {
         event.preventDefault();
@@ -133,7 +155,7 @@ const deliver = () => {
                 sx={{
                     marginTop: "3%",
                 }}
-                maxWidth="sm"
+                maxWidth="sm"getLoan
             >
                 <Card>
                     <Card sx={{ minWidth: 275, height: 400 }}>
@@ -153,6 +175,20 @@ const deliver = () => {
                         </Button>
                     </ThemeProvider>
                 </Card>
+                <Snackbar
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                >
+                    <Alert
+                        onClose={handleClose}
+                        severity="success"
+                        sx={{ width: "100%" }}
+                    >
+                        Feito!!!
+                    </Alert>
+                </Snackbar>
             </Container>
         </>
     );
