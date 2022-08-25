@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon node server.js --ignore __test__  ",
+    "dev": "next dev",
     "start": "node server.js",
     "lint": "next lint",
     "pretest": "NODE_ENV=test prisma migrate reset",

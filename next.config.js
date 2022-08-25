@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  useFileSystemPublicRoutes: false,
+  useFileSystemPublicRoutes: true,
   env:{
     secret:"GN8Mrz7EJC%3",
   },
