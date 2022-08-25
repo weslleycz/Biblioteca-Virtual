@@ -12,7 +12,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Snackbar from "@mui/material/Snackbar";
 import { ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import axios from "../api/heroku";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import Router from "next/router";
 import { forwardRef, useEffect, useState } from "react";

@@ -7,7 +7,7 @@ import Snackbar from "@mui/material/Snackbar";
 import { ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
-import axios from "axios";
+import axios from "../api/heroku";
 import { doc, setDoc } from "firebase/firestore";
 import Router, { useRouter } from "next/router";
 import * as React from "react";

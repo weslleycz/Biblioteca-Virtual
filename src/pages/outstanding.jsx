@@ -2,7 +2,7 @@ import { Card } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
-import axios from "axios";
+import axios from "../api/heroku";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";

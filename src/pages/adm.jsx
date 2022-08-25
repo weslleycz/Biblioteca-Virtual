@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import axios from "../api/heroku";
 import Image from "next/image";
 import Router from "next/router";
 import * as React from "react";

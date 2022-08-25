@@ -9,7 +9,7 @@ import Link from "@mui/material/Link";
 import Snackbar from "@mui/material/Snackbar";
 import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
+import axios from "../api/heroku";
 import Router from "next/router";
 import { forwardRef, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";

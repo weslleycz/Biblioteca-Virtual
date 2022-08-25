@@ -4,7 +4,7 @@ import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
+import axios from "../api/heroku";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";

@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
+import axios from "../api/heroku";
 import Image from "next/image";
 import Router from "next/router";
 import { useEffect, useState } from "react";

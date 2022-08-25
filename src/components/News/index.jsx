@@ -15,8 +15,7 @@ import { Book } from "../Book";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import axios from "axios";
-
+import axios from "../../api/heroku";
 const responsive = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },

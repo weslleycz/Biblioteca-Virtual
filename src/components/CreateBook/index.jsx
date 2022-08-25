@@ -17,7 +17,7 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
+import axios from "../../api/heroku";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useEffect, useState,forwardRef } from "react";
 import { useCookies } from "react-cookie";
