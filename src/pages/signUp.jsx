@@ -163,7 +163,6 @@ export default function SignUp() {
                                     label="Senha"
                                     type="password"
                                     id="password"
-                                    autoComplete="new-password"
                                 />
                             </Grid>
                         </Grid>

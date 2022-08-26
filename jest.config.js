@@ -6,6 +6,7 @@
 module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
+  "preset": "jest-puppeteer",
 
   // Stop running tests after `n` failures
   bail: true,
