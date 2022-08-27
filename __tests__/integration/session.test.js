@@ -1,6 +1,6 @@
 const prismaClient = require("../../src/servers/prismaClient");
+const axios = require("axios");
 const puppeteer = require("puppeteer");
-
 const { uuid } = require("uuidv4");
 
 describe("Cadastrar Usuário", () => {
@@ -45,13 +45,13 @@ describe("Cadastrar um novo livro", () => {
         const book = await prismaClient.book.create({
             data: {
                 ISBN: "123",
-                title: "Teste",
-                description: "Teste 123",
-                author: "Teste 1",
+                title: "teste",
+                description: "teste 123",
+                author: "teste 1",
                 year: "2020",
             },
         });
-        expect(book.title).toBe("Teste");
+        expect(book.title).toBe("teste");
     });
     it("Não permitir datas inválidas", async () => {
         const book = await prismaClient.book.create({
@@ -113,13 +113,31 @@ describe("Cadastrar um novo livro", () => {
     });
 });
 
-describe("Testes de Integração", () => {
+describe("Books - Endpoints", () => {
     beforeAll(async () => {});
+    const host = `http://localhost:${process.env.PORT||3000}/`
+    describe('GET /getBook', () => {
+        it("Retorna todos os livros - 200",async()=>{
+            const book = await axios.get(`${host}/getBook`)
+            expect(book.status).toBe(200);
+        })
+    })
+    describe('GET /searchBook', () => {
+        it("Pesquisar livros- 200",async()=>{
+            const book = await axios.get(`${host}/searchBook/teste`)
+            expect(book.data.data[0].title).toBe("teste");
+        })
+    })
+})
+
+describe("Testes de Sistema", () => {
+    beforeAll(async () => {});
+    const host = `http://localhost:${process.env.PORT||3000}`
 
     it("Cadastrar Usuário pelo front end", async () => {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
-        await page.goto("http://localhost:3000");
+        await page.goto(host);
         const btn = await page.$(
             "#__next > div.MuiContainer-root.MuiContainer-maxWidthLg.css-11kmze1-MuiContainer-root > div > div > div.MuiGrid2-root.MuiGrid2-grid-xs-8.css-1edfbbl-MuiGrid2-root > div > a"
         );
@@ -165,7 +183,7 @@ describe("Testes de Integração", () => {
     it("Não permitir o cadastro de usuarios sem preencher todos os campos. ", async () => {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
-        await page.goto("http://localhost:3000");
+        await page.goto(host);
         const btn = await page.$(
             "#__next > div.MuiContainer-root.MuiContainer-maxWidthLg.css-11kmze1-MuiContainer-root > div > div > div.MuiGrid2-root.MuiGrid2-grid-xs-8.css-1edfbbl-MuiGrid2-root > div > a"
         );
@@ -183,7 +201,7 @@ describe("Testes de Integração", () => {
             await browser.close();
         } else {
             await browser.close();
-            throw new UserException("error");
+            throw Error();
         }
     });
 });
