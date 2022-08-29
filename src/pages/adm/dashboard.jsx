@@ -7,10 +7,10 @@ import Image from "next/image";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import Book from "../assets/book.svg";
-import M from "../assets/M.svg";
-import box from "../assets/box.svg";
-import warning from "../assets/warning.svg";
+import Book from "../../assets/book.svg";
+import M from "../../assets/M.svg";
+import box from "../../assets/box.svg";
+import warning from "../../assets/warning.svg";
 
 const dashboardAdm = () => {
     const [cookies, setCookie] = useCookies(["token"]);

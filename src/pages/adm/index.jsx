@@ -7,15 +7,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import axios from "../api/heroku";
+import axios from "../../api/heroku";
 import Image from "next/image";
 import Router from "next/router";
 import * as React from "react";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 
-import avatarADM from "../assets/adm.svg";
-import { theme } from "../styles/theme/materialUi";
+import avatarADM from "../../assets/adm.svg";
+import { theme } from "../../styles/theme/materialUi";
 
 const ADM = () => {
     const [warning, setWarning] = useState("");
