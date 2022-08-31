@@ -3,6 +3,8 @@ const next = require("next");
 const { color } = require("console-log-colors");
 const options = require("./src/swagger/config");
 const {upPendency}=require("./src/webhooks/upPendency")
+const swaggerAutogen = require('swagger-autogen')()
+const cors = require("cors");
 const cron = require("node-cron");
 const swaggerUi = require("swagger-ui-express");
 require('dotenv').config({
@@ -17,6 +19,11 @@ const { router } = require("./routes");
 
 app.prepare().then(() => {
     const server = express();
+
+    const corsOptions = {
+        origin : "*", 
+        credentials : true  
+ }
 
     server.use(express.json({ limit: "100mb" }));
     server.use(express.static("public"));
@@ -98,9 +105,11 @@ app.prepare().then(() => {
 
     server.use(
         "/doc",
-        swaggerUi.serveFiles(null, options),
+        swaggerUi.serve,
         swaggerUi.setup(null, options)
     );
+
+    server.options('*', cors(corsOptions));
 
     server.use(router);
 

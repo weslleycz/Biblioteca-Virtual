@@ -7,6 +7,7 @@ const createBook = async (req, res) => {
     console.log(bgGreen(req.method));
     const secret = process.env.secret || "GN8Mrz7EJC%3";
     try {
+        console.log(req.headers.authorization);
         const token = verify(req.headers.authorization, secret);
         const { ISBN, title, author, year,url,description } = req.body;
         const data = await prismaClient.book.create({

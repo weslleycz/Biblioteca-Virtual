@@ -26,7 +26,7 @@ const createUser = async (req, res) => {
         });
         return res.status(200).json({ status: "create", has_error: false });
     } catch (error) {
-        return res.status(500).json({ status: "Esse email já está vinculado", has_error: true });
+        return res.status(400).json({ status: "Esse email já está vinculado", has_error: true });
     }
 };
 

@@ -1,114 +1,398 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Simple API overview",
-    "version": "v2"
-  },
-  "paths": {
-        "/singupUser": {
+    "swagger": "2.0",
+    "info": {
+      "title": "BIBLIOTECA ON-LINE",
+      "version": "v1",
+      "license": {
+          "name": "MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/signupADM": {
         "post": {
-          "summary": "Cadastro de usuário",
-          "tags": ["User"],
-          "produces": [
-            "application/json"
+          "summary": "Cadastro de ADM",
+          "tags": [
+              "ADM"
           ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por cadastrar um novo usuário",
-              "tags": ["User"],
-              "examples": {
-                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"telephone\": \"12312312\", \n \"category\": \"aluno\", \n \"password\": \"12345\"}"
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "example": "string"
+                  },
+                  "username": {
+                    "example": "string"
+                  }
+                }
               }
             }
-          }
-        }
-      },
-      "/loginUser": {
-        "post": {
-          "summary": "Login de usuário",
-          "tags": ["User"],
-          "produces": [
-            "application/json"
           ],
           "responses": {
             "200": {
-              "description": "Rota responsável por logar um  usuário",
-              "tags": ["User"],
-              "examples": {
-                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
-              }
-            }
-          }
-        }
-      },
-      "/loginUser": {
-        "post": {
-          "summary": "Login de usuário",
-          "tags": ["User"],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por logar um  usuário",
-              "tags": ["User"],
-              "examples": {
-                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
-              }
-            }
-          }
-        }
-      },
-      "/deleteUser": {
-        "delete": {
-          "summary": "Deletar usuário",
-          "tags": ["User"],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por Deletar um usuário um  usuário",
-              "tags": ["User"],
-              "examples": {
-                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
-              }
-            }
-          }
-        }
-      },
-      "/singupADM": {
-        "post": {
-          "summary": "criar um usuário administrador",
-          "tags": ["UserADM"],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por criar um usuário adm",
-              "tags": ["UserADM"],
-              "examples": {
-                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
-              }
+              "description": "OK"
+            },
+            "500": {
+              "description": "Internal Server Error"
             }
           }
         }
       },
       "/loginADM": {
         "post": {
-          "summary": "Login de usuário administrador",
-          "tags": ["UserADM"],
-          "produces": [
-            "application/json"
+          "summary": "Login de ADM",
+          "tags": [
+              "ADM"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "example": "string"
+                  },
+                  "username": {
+                    "example": "string"
+                  }
+                }
+              }
+            }
           ],
           "responses": {
             "200": {
-              "description": "Rota responsável por logar um usuário adm",
-              "tags": ["UserADM"],
-              "examples": {
-                "application/json": "{\n \"nome\": \"davi\", \n \"email\": \"exe@gmail.com\", \n \"password\": \"12345\"}"
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/signupUser": {
+        "post": {
+          "summary": "Login de usuário",
+          "tags": [
+              "User"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "example": "string"
+                  },
+                  "registration": {
+                    "example": "string"
+                  },
+                  "category": {
+                    "example": "string"
+                  },
+                  "name": {
+                    "example": "string"
+                  },
+                  "telephone": {
+                    "example": "string"
+                  },
+                  "email": {
+                    "example": "string"
+                  }
+                }
               }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+      "/loginUser": {
+        "post": {
+          "summary": "Login de usuário",
+          "tags": [
+              "User"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "example": "string"
+                  },
+                  "email": {
+                    "example": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/getPendency": {
+        "get": {
+          "summary": "Lista de usuários que estão devendo livros.",
+          "tags": [
+              "User"
+          ],
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/getIdCar/{id}": {
+        "get": {
+          "summary": "Pega o id de carrinho do usuário.",
+          "tags": [
+              "User"
+          ],
+          "security": [
+            {
+               "basicAuth": []
+            }
+        ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+                "name": "authorization",
+                "in": "header",
+                "type": "string",
+                "description": "Token jwt do usuário."  
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "300": {
+              "description": "Usuário não logado (redireciona para a pagina off)"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/createLoan": {
+        "post": {
+            "tags": ["Loan"],
+            "security": [
+                {
+                   "basicAuth": []
+                }
+            ],
+          "summary":  "cria um emprestimo",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "type": "string",
+              "description": "Token jwt do usuário."
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "books": {
+                    "example": [
+                        {
+                         "id":"Id do livro"
+                        }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "300": {
+              "description": "Usuário não logado (redireciona para a pagina off)"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/getLoan": {
+        "get": {
+          "summary": "seleciona um emprestimo",
+          "tags": ["Loan"],
+          "security": [
+            {
+               "basicAuth": []
+            }
+        ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "type": "string",
+              "description": "Token jwt do usuário ou do ADM."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "300": {
+              "description": "Usuário não logado (redireciona para a pagina off)"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/getLoans": {
+        "get": {
+            "security": [
+                {
+                   "basicAuth": []
+                }
+            ],
+          "tags": ["Loan"],
+          "summary":  "lista os empréstimos do usuário          ",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "type": "string",
+              "description": "Token jwt do usuário."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "300": {
+              "description": "Usuário não logado (redireciona para a pagina off)"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/selectLoan/{id}": {
+        "get": {
+          "summary": "seleciona um emprestimo",
+          "tags": ["Loan"],
+          "security": [
+            {
+               "basicAuth": []
+            }
+        ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "type": "string",
+              "description": "Token jwt do usuário ou ADM."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "300": {
+              "description": "Usuário não logado (redireciona para a pagina off)"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/updateLoan/{id}": {
+        "put": {
+            "tags": ["Loan"],
+        "summary": "atualiza o status do emprestimo",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "300": {
+              "description": "Usuário não logado (redireciona para a pagina off)"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "500": {
+              "description": "Internal Server Error"
             }
           }
         }
@@ -116,71 +400,98 @@
       "/createBook": {
         "post": {
           "summary": "Criar um livro",
-          "tags": ["Book"],
-          "produces": [
-            "application/json"
+          "tags": [
+              "Book"
+          ],
+          "description": "",
+          "security": [
+            {
+               "basicAuth": []
+            }
+        ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "type": "string",
+              "description": "Token jwt do ADM."
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ISBN": {
+                    "example": "string"
+                  },
+                  "title": {
+                    "example": "string"
+                  },
+                  "author": {
+                    "example": "string"
+                  },
+                  "year": {
+                    "example": "string"
+                  },
+                  "url": {
+                    "example": "string"
+                  },
+                  "description": {
+                    "example": "string"
+                  }
+                }
+              }
+            }
           ],
           "responses": {
             "200": {
-              "description": "Rota responsável por criar um livro",
-              "tags": ["Book"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
-              }
+              "description": "OK"
+            },
+            "300": {
+              "description": "Usuário não logado (redireciona para a pagina off)"
+            },
+            "500": {
+              "description": "Internal Server Error"
             }
           }
         }
       },
-      "/updateBook": {
-        "put": {
-          "summary": "Atualiza um livro",
-          "tags": ["Book"],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por atualizar um livro cadastrado no banco",
-              "tags": ["Book"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
-              }
-            }
-          }
-        }
-      },
-      "/deleteBook": {
+      "/deleteBook/{id}": {
         "delete": {
           "summary": "deleta um livro",
-          "tags": ["Book"],
-          "produces": [
-            "application/json"
+          "tags": [
+              "Book"
           ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por deletar um livro cadastrado no banco",
-              "tags": ["Book"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
+          "security": [
+              {
+                 "basicAuth": []
               }
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "description": "Token jwt do ADM.",
+              "type": "string"
             }
-          }
-        }
-      },
-      "/searchBook": {
-        "get": {
-          "summary": "busca um livro",
-          "tags": ["Book"],
-          "produces": [
-            "application/json"
           ],
           "responses": {
             "200": {
-              "description": "Rota responsável por buscar um livro cadastrado no banco",
-              "tags": ["Book"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
-              }
+              "description": "OK"
+            },
+            "300": {
+              "description": "Usuário não logado (redireciona para a pagina off)"
+            },
+            "500": {
+              "description": "Internal Server Error"
             }
           }
         }
@@ -188,114 +499,72 @@
       "/getBook": {
         "get": {
           "summary": "recupera um livro",
-          "tags": ["Book"],
-          "produces": [
-            "application/json"
+          "tags": [
+              "Book"
           ],
+          "description": "",
+          "parameters": [],
           "responses": {
             "200": {
-              "description": "Rota responsável por recuperar um livro cadastrado no banco",
-              "tags": ["Book"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
-              }
+              "description": "OK"
+            },
+            "500": {
+              "description": "Internal Server Error"
             }
           }
         }
       },
-      "/setBook": {
+      "/searchBook/{title}": {
         "get": {
+          "tags": [
+              "Book"
+          ],
+          "produces": [
+              "application/json"
+          ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "title",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/setBook/{id}": {
+        "get": {  
           "summary": "seta um livro",
-          "tags": ["Book"],
-          "produces": [
-            "application/json"
+        "tags": [
+            "Book"
+        ],
+          "description": "",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
           ],
           "responses": {
             "200": {
-              "description": "Rota responsável por setar um livro cadastrado no banco",
-              "tags": ["Book"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\"}"
-              }
+              "description": "OK"
+            },
+            "500": {
+              "description": "Internal Server Error"
             }
           }
         }
-      },
-      "/createLoan": {
-        "post": {
-          "summary": "cria um emprestimo",
-          "tags": ["User"],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por realizar o emprestimo",
-              "tags": ["user"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\", \n \"name\": \"David\" }"
-              }
-            }
-          }
-        }
-      },
-      "/getLoan": {
-        "get": {
-          "summary": "recupera um emprestimo",
-          "tags": ["User"],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por buscar um emprestimo",
-              "tags": ["user"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\", \n \"name\": \"David\" }"
-              }
-            }
-          }
-        }
-      },
-      "/selectLoan": {
-        "get": {
-          "summary": "seleciona um emprestimo",
-          "tags": ["User"],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por selecionar um emprestimo",
-              "tags": ["user"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\", \n \"name\": \"David\" }"
-              }
-            }
-          }
-        }
-      },
-      "/updateLoan": {
-        "get": {
-          "summary": "atualiza um emprestimo",
-          "tags": ["User"],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "Rota responsável por atualizar um emprestimo",
-              "tags": ["user"],
-              "examples": {
-                "application/json": "{\n \"title\": \"Morangos morfados\", \n \"author\": \"exe\", \n \"year\": \"1234\", \n \"description\": \"dddddd\", \n \"name\": \"David\" }"
-              }
-            }
-          }
-        }
-      } 
-  },
-  
-  "consumes": [
-    "application/json"
-  ]
-}
+      }
+    }
+  }

@@ -113,6 +113,12 @@ describe("Cadastrar um novo livro", () => {
     });
 });
 
+try {
+    
+} catch (error) {
+    
+}
+
 describe("Books - Endpoints", () => {
     beforeAll(async () => {});
     const host = `http://localhost:${process.env.PORT||3000}/`
